@@ -1,4 +1,4 @@
-package com.xust.housemgt.controller;
+package com.housemgt.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author chenxin
  */
 @RestController
-public class paramSetting {
+public class ParamSetting {
 
     @RequestMapping("/paramSetting")
     public String demo() {
