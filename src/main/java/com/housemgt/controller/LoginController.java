@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class MyController {
+public class LoginController {
     @Autowired
     private BaseService baseService;
 
-    private final Logger logger = LoggerFactory.getLogger(MyController.class);
+    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping("/doLogin")
     public String doLogin(@RequestParam("username") String username,
