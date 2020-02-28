@@ -1,71 +1,58 @@
 package com.housemgt.controller;
 
+import com.housemgt.common.msg.CodeMsg;
+import com.housemgt.common.msg.ResultMsg;
 import com.housemgt.service.BaseService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+@RestController
 public class LoginController {
     @Autowired
     private BaseService baseService;
 
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @RequestMapping("/doLogin")
-    public String doLogin(@RequestParam("username") String username,
-                          @RequestParam("password") String password) {
-        // 创建Subject实例
+    @ResponseBody
+    @RequestMapping(value = "/login", method = POST)
+    public Object login(@RequestParam("username") String username,
+                        @RequestParam("password") String password) {
+
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+
         Subject currentUser = SecurityUtils.getSubject();
 
-        // 将用户名及密码封装到UsernamePasswordToken
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        ResultMsg resultMsg = null;
 
         try {
             currentUser.login(token);
             // 判断当前用户是否登录
             if (currentUser.isAuthenticated() == true) {
-                return "/index.html";
+                resultMsg = ResultMsg.success();
+                System.out.println("登录成功, 用户名：" + username);
             }
-        } catch (AuthenticationException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("登录失败");
+            resultMsg = ResultMsg.error(CodeMsg.ERROR);
+            System.out.println("登录失败, 用户名：" + username);
         }
-        return "/loginPage.html";
-    }
-
-    @RequestMapping("/doRegister")
-    public String doRegister(@RequestParam("username") String username,
-                             @RequestParam("password") String password) {
-        boolean result = baseService.registerData(username,password);
-        if(result){
-            return "/login";
-        }
-        return "/register";
-    }
-
-    @RequestMapping(value = "/login")
-    public String login() {
-        logger.info("login() 方法被调用");
-        return "loginPage.html";
-    }
-
-    @RequestMapping(value = "/register")
-    public String register() {
-        logger.info("register() 方法被调用");
-        return "registerPage.html";
-    }
-
-    @RequestMapping(value = "/hello")
-    public String hello() {
-        logger.info("hello() 方法被调用");
-        return "helloPage.html";
+        return resultMsg;
     }
 }

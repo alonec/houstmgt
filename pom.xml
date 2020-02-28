@@ -12,6 +12,7 @@
     <artifactId>housemgt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>housemgt</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -114,6 +115,12 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
             <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+            <scope>compile</scope>
         </dependency>
         <!-- shiro END-->
     </dependencies>

@@ -9,7 +9,7 @@ public interface UserMapper {
      * @param username 用户名
      * @return 将数据封装到Map类型中
      */
-    public Map<String, Object> queryInfoByUsername(String username);
+    public String queryInfoByUsername(String username);
 
     /**
      * 插入一条数据
