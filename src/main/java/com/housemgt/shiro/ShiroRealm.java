@@ -2,7 +2,7 @@ package com.housemgt.shiro;
 
 import javax.annotation.Resource;
 
-import com.housemgt.service.BaseService;
+import com.housemgt.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,7 +15,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     /**注解引入业务类**/
     @Resource
-    BaseService baseService;
+    UserService baseService;
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {

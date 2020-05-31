@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.housemgt.mapper.AreaRuleMapper">
+  <resultMap id="BaseResultMap" type="com.housemgt.model.AreaRule">
+    <id column="area_rule_id" jdbcType="INTEGER" property="areaRuleId" />
+    <result column="sereal_id" jdbcType="INTEGER" property="serealId" />
+    <result column="level_name" jdbcType="VARCHAR" property="levelName" />
+    <result column="level_people" jdbcType="VARCHAR" property="levelPeople" />
+    <result column="level_grade" jdbcType="VARCHAR" property="levelGrade" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    area_rule_id, sereal_id, level_name, level_people, level_grade
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_area_rules
+    where area_rule_id = #{areaRuleId,jdbcType=INTEGER}
+  </select>
+  <select id="countBySerealId" resultType="int">
+    select count(*)
+    from t_area_rule
+    where sereal_id = #{serealId,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySerealId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_area_rule
+    where sereal_id = #{serealId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_area_rule
+    where area_rule_id = #{areaRuleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.housemgt.model.AreaRule">
+    insert into t_area_rule (area_rule_id, sereal_id, level_name, 
+      level_people, level_grade
+      )
+    values (#{areaRuleId,jdbcType=INTEGER}, #{serealId,jdbcType=INTEGER}, #{levelName,jdbcType=VARCHAR}, 
+      #{levelPeople,jdbcType=VARCHAR}, #{levelGrade,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.housemgt.model.AreaRule">
+    insert into t_area_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaRuleId != null">
+        area_rule_id,
+      </if>
+      <if test="serealId != null">
+        sereal_id,
+      </if>
+      <if test="levelName != null">
+        level_name,
+      </if>
+      <if test="levelPeople != null">
+        level_people,
+      </if>
+      <if test="levelGrade != null">
+        level_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaRuleId != null">
+        #{areaRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="serealId != null">
+        #{serealId,jdbcType=INTEGER},
+      </if>
+      <if test="levelName != null">
+        #{levelName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeople != null">
+        #{levelPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="levelGrade != null">
+        #{levelGrade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.housemgt.model.AreaRule">
+    update t_area_rule
+    <set>
+      <if test="serealId != null">
+        sereal_id = #{serealId,jdbcType=INTEGER},
+      </if>
+      <if test="levelName != null">
+        level_name = #{levelName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeople != null">
+        level_people = #{levelPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="levelGrade != null">
+        level_grade = #{levelGrade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where area_rule_id = #{areaRuleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.housemgt.model.AreaRule">
+    update t_area_rule
+    set sereal_id = #{serealId,jdbcType=INTEGER},
+      level_name = #{levelName,jdbcType=VARCHAR},
+      level_people = #{levelPeople,jdbcType=VARCHAR},
+      level_grade = #{levelGrade,jdbcType=VARCHAR},
+    where area_rule_id = #{areaRuleId,jdbcType=INTEGER}
+  </update>
+</mapper>

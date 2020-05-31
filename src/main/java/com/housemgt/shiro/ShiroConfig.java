@@ -20,9 +20,23 @@ public class ShiroConfig {
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
         // 配置不会被拦截的链接
         filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/doLogin", "anon");
         filterChainDefinitionMap.put("/doRegister", "anon");
-        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/rule/meta/add", "anon");
+        filterChainDefinitionMap.put("/rule/meta/delete", "anon");
+        filterChainDefinitionMap.put("/rule/meta/update", "anon");
+        filterChainDefinitionMap.put("/rule/meta/selectAll", "anon");
+        filterChainDefinitionMap.put("/rule/area/selectMenu", "anon");
+        filterChainDefinitionMap.put("/rule/area/selectBySerealId", "anon");
+        filterChainDefinitionMap.put("/rule/area/update", "anon");
+        filterChainDefinitionMap.put("/rule/area/add", "anon");
+        filterChainDefinitionMap.put("/rule/area/delete", "anon");
+        filterChainDefinitionMap.put("/rule/level/selectBySerealId", "anon");
+        filterChainDefinitionMap.put("/rule/level/selectLevelNameBySerealId", "anon");
+        filterChainDefinitionMap.put("/rule/level/selectBySerealIdAndLevelName", "anon");
+        filterChainDefinitionMap.put("/rule/credit/selectBySerealId", "anon");
+        filterChainDefinitionMap.put("/rule/credit/update", "anon");
+        filterChainDefinitionMap.put("/rule/credit/add", "anon");
+        filterChainDefinitionMap.put("/rule/credit/delete", "anon");
 
         // 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/doLogout", "logout");

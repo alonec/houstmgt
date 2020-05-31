@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.housemgt.mapper.CreditJobRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.housemgt.model.CreditJobRule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sereal_id" property="serealId" jdbcType="INTEGER" />
+    <result column="base_grade" property="baseGrade" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="level_people" property="levelPeople" jdbcType="VARCHAR" />
+    <result column="level_people_id" property="levelPeopleId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sereal_id, base_grade, grade, level_people, level_people_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_credit_job_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySerealId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_credit_job_rule
+    where sereal_id = #{serealId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_credit_job_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.housemgt.model.CreditJobRule" >
+    insert into t_credit_job_rule (id, sereal_id, base_grade,
+      grade, level_people, level_people_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{serealId,jdbcType=INTEGER}, #{baseGrade,jdbcType=VARCHAR},
+      #{grade,jdbcType=VARCHAR}, #{levelPeople,jdbcType=VARCHAR}, #{levelPeopleId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.housemgt.model.CreditJobRule" >
+    insert into t_credit_job_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serealId != null" >
+        sereal_id,
+      </if>
+      <if test="baseGrade != null" >
+        base_grade,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="levelPeople != null" >
+        level_people,
+      </if>
+      <if test="levelPeopleId != null" >
+        level_people_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serealId != null" >
+        #{serealId,jdbcType=INTEGER},
+      </if>
+      <if test="baseGrade != null" >
+        #{baseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeople != null" >
+        #{levelPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeopleId != null" >
+        #{levelPeopleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.housemgt.model.CreditJobRule" >
+    update t_credit_job_rule
+    <set >
+      <if test="serealId != null" >
+        sereal_id = #{serealId,jdbcType=INTEGER},
+      </if>
+      <if test="baseGrade != null" >
+        base_grade = #{baseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeople != null" >
+        level_people = #{levelPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeopleId != null" >
+        level_people_id = #{levelPeopleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.housemgt.model.CreditJobRule" >
+    update t_credit_job_rule
+    set sereal_id = #{serealId,jdbcType=INTEGER},
+      base_grade = #{baseGrade,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      level_people = #{levelPeople,jdbcType=VARCHAR},
+      level_people_id = #{levelPeopleId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
