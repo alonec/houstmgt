@@ -41,11 +41,17 @@ public class AreaRuleServiceImpl implements AreaRuleService {
 
     @Override
     public int countBySerealId(Integer serealId) {
+        if (serealId < 1){
+            return 0;
+        }
         return areaRuleMapper.countBySerealId(serealId);
     }
 
     @Override
     public List<AreaRule> selectBySerealId(Integer serealId, Integer pageNumber, Integer pageSize) {
+        if(serealId == 0){
+            return null;
+        }
         PageHelper.startPage(pageNumber, pageSize);
         return areaRuleMapper.selectBySerealId(serealId);
     }

@@ -28,6 +28,16 @@ public interface LevelPeopleMapper {
      */
     List<LevelPeople> selectBySerealIdAndLevelName(Integer serealId, String levelName);
 
+    /**
+     * 支持通过业务类型、系列id、人员范围查询列表
+     */
+    List<LevelPeople> selectByBizSerealPeople(Integer bizType, Integer serealId, String levelPeople);
+
+    /**
+     * 支持通过业务类型、系列id、人员范围查询列表总数
+     */
+    int countByBizSerealPeople(Integer bizType, Integer serealId, String levelPeople);
+
     int updateByPrimaryKeySelective(LevelPeople record);
 
     int updateByPrimaryKey(LevelPeople record);

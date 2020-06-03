@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.housemgt.mapper.CreditJobRuleMapper" >
-  <resultMap id="BaseResultMap" type="com.housemgt.model.CreditJobRule" >
+<mapper namespace="com.housemgt.mapper.CreditHandymanRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.housemgt.model.CreditHandyManRule" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="sereal_id" property="serealId" jdbcType="INTEGER" />
     <result column="base_grade" property="baseGrade" jdbcType="VARCHAR" />
@@ -13,36 +13,36 @@
     id, sereal_id, base_grade, grade, level_people, level_people_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
+    select 
     <include refid="Base_Column_List" />
-    from t_credit_job_rule
+    from t_credit_handyman_rule
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="countBySerealId" resultType="int">
     select count(*)
-    from t_credit_job_rule
+    from t_credit_handyman_rule
     where sereal_id = #{serealId,jdbcType=INTEGER}
   </select>
   <select id="selectBySerealId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from t_credit_job_rule
+    from t_credit_handyman_rule
     where sereal_id = #{serealId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_credit_job_rule
+    delete from t_credit_handyman_rule
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.housemgt.model.CreditJobRule" >
-    insert into t_credit_job_rule (id, sereal_id, base_grade,
+  <insert id="insert" parameterType="com.housemgt.model.CreditHandyManRule" >
+    insert into t_credit_handyman_rule (id, sereal_id, base_grade, 
       grade, level_people, level_people_id
       )
-    values (#{id,jdbcType=INTEGER}, #{serealId,jdbcType=INTEGER}, #{baseGrade,jdbcType=VARCHAR},
+    values (#{id,jdbcType=INTEGER}, #{serealId,jdbcType=INTEGER}, #{baseGrade,jdbcType=VARCHAR}, 
       #{grade,jdbcType=VARCHAR}, #{levelPeople,jdbcType=VARCHAR}, #{levelPeopleId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.housemgt.model.CreditJobRule" >
-    insert into t_credit_job_rule
+  <insert id="insertSelective" parameterType="com.housemgt.model.CreditHandyManRule" >
+    insert into t_credit_handyman_rule
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -84,8 +84,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.housemgt.model.CreditJobRule" >
-    update t_credit_job_rule
+  <update id="updateByPrimaryKeySelective" parameterType="com.housemgt.model.CreditHandyManRule" >
+    update t_credit_handyman_rule
     <set >
       <if test="serealId != null" >
         sereal_id = #{serealId,jdbcType=INTEGER},
@@ -105,8 +105,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.housemgt.model.CreditJobRule" >
-    update t_credit_job_rule
+  <update id="updateByPrimaryKey" parameterType="com.housemgt.model.CreditHandyManRule" >
+    update t_credit_handyman_rule
     set sereal_id = #{serealId,jdbcType=INTEGER},
       base_grade = #{baseGrade,jdbcType=VARCHAR},
       grade = #{grade,jdbcType=VARCHAR},

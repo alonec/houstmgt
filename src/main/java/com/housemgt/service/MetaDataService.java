@@ -28,6 +28,11 @@ public interface MetaDataService {
     int updateBySerealId(MetaData record);
 
     /**
+     * 查询业务类型
+     */
+    List<MetaData> selectBizType();
+
+    /**
      * 查询全部元数据配置列表
      */
     List<MetaData> selectAll();
@@ -36,4 +41,9 @@ public interface MetaDataService {
      * 根据业务类型查询元数据配置列表
      */
     List<MetaData> selectByBizType(Integer bizType);
+
+    /**
+     * 根据系列id查询元数据配置列表
+     */
+    MetaData selectBySerealId(Integer serealId);
 }

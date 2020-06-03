@@ -24,7 +24,7 @@ public class MetaDataServiceImpl implements MetaDataService {
 
     @Override
     public int deleteBySerealId(Integer serealId) {
-        if (serealId > 0){
+        if (serealId < 1){
             return 0;
         }
         return metaDataMapper.deleteByPrimaryKey(serealId);
@@ -39,6 +39,11 @@ public class MetaDataServiceImpl implements MetaDataService {
     }
 
     @Override
+    public List<MetaData> selectBizType() {
+        return metaDataMapper.selectBizType();
+    }
+
+    @Override
     public List<MetaData> selectAll() {
         return metaDataMapper.selectAll();
     }
@@ -49,5 +54,13 @@ public class MetaDataServiceImpl implements MetaDataService {
             return null;
         }
         return metaDataMapper.selectByBizType(bizType);
+    }
+
+    @Override
+    public MetaData selectBySerealId(Integer serealId) {
+        if (serealId < 0) {
+            return null;
+        }
+        return metaDataMapper.selectByPrimaryKey(serealId);
     }
 }

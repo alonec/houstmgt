@@ -24,14 +24,17 @@ public class MetaDataController {
 
     @ResponseBody
     @RequestMapping(value = "/rule/meta/add")
-    public Object add(@RequestParam("bizName") String bizName,
-                        @RequestParam("bizType") String bizType,
+    public Object add(@RequestParam("bizType") Integer bizType,
                         @RequestParam("serealName") String serealName) {
         MetaData metaData = new MetaData();
-        metaData.setBizName(bizName);
         metaData.setBizType(bizType);
         metaData.setSerealName(serealName);
-        System.out.println(metaData.toString());
+
+        // 查询到业务名称
+        List<MetaData> metaData1 = metaDataService.selectByBizType(bizType);
+        if (metaData1 != null) {
+            metaData.setBizName(metaData1.get(0).getBizName());
+        }
         ResultMsg resultMsg = null;
         try {
             if (metaDataService.insert(metaData) > 0){
@@ -66,7 +69,7 @@ public class MetaDataController {
     @ResponseBody
     @RequestMapping(value = "/rule/meta/update")
     public Object update(@RequestParam("bizName") String bizName,
-                         @RequestParam("bizType") String bizType,
+                         @RequestParam("bizType") Integer bizType,
                          @RequestParam("serealName") String serealName,
                          @RequestParam("serealId") Integer serealId) {
         MetaData metaData = new MetaData();
@@ -96,6 +99,26 @@ public class MetaDataController {
         ResultMsg resultMsg = null;
         try {
             List<MetaData> dataList = metaDataService.selectAll();
+            if (dataList != null && dataList.size() > 0){
+                resultMsg = ResultMsg.success(dataList);
+            } else {
+                resultMsg = ResultMsg.success();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+            resultMsg = ResultMsg.error(CodeMsg.ERROR);
+        }
+        return resultMsg;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/rule/meta/selectBizType")
+    public Object selectBizType() {
+
+        ResultMsg resultMsg = null;
+        try {
+            List<MetaData> dataList = metaDataService.selectBizType();
             if (dataList != null && dataList.size() > 0){
                 resultMsg = ResultMsg.success(dataList);
             } else {

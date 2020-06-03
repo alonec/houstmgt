@@ -1,6 +1,6 @@
 package com.housemgt.service;
 
-import com.housemgt.model.CreditJobRule;
+import com.housemgt.model.CreditAdditionalRule;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ import java.util.List;
  * 计分规则配置业务层接口
  * @author chenxin
  */
-public interface CreditJobRuleService {
+public interface CreditAdditionalRuleService {
 
     /**
      *  增加计分规则
      */
-    int insertSelective(CreditJobRule record);
+    int insertSelective(CreditAdditionalRule record);
 
     /**
      *  删除计分规则
@@ -23,7 +23,7 @@ public interface CreditJobRuleService {
     /**
      *  修改计分规则
      */
-    int updateByPrimaryKeySelective(CreditJobRule record);
+    int updateByPrimaryKeySelective(CreditAdditionalRule record);
 
     /**
      * 根据系列id查询计分规则配置总数
@@ -33,5 +33,5 @@ public interface CreditJobRuleService {
     /**
      *  根据系列id查询计分规则配置
      */
-    List<CreditJobRule> selectBySerealId(Integer serealId, Integer pageNumber, Integer pageSize);
+    List<CreditAdditionalRule> selectBySerealId(Integer serealId, Integer pageNumber, Integer pageSize);
 }

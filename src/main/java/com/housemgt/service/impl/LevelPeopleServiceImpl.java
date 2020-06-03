@@ -1,5 +1,6 @@
 package com.housemgt.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.housemgt.mapper.LevelPeopleMapper;
 import com.housemgt.model.LevelPeople;
 import com.housemgt.service.LevelPeopleService;
@@ -13,6 +14,30 @@ public class LevelPeopleServiceImpl implements LevelPeopleService {
 
     @Autowired
     private LevelPeopleMapper levelPeopleMapper;
+
+    @Override
+    public int insertSelective(LevelPeople record) {
+        if (record == null){
+            return 0;
+        }
+        return levelPeopleMapper.insertSelective(record);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Integer areaRuleId) {
+        if (areaRuleId < 1){
+            return 0;
+        }
+        return levelPeopleMapper.deleteByPrimaryKey(areaRuleId);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(LevelPeople record) {
+        if (record == null){
+            return 0;
+        }
+        return levelPeopleMapper.updateByPrimaryKeySelective(record);
+    }
 
     @Override
     public List<LevelPeople> selectBySerealId(Integer serealId) {
@@ -36,6 +61,22 @@ public class LevelPeopleServiceImpl implements LevelPeopleService {
             return null;
         }
         return levelPeopleMapper.selectBySerealIdAndLevelName(serealId, levelName);
+    }
+
+    @Override
+    public List<LevelPeople> selectByBizSerealPeople(Integer bizType, Integer serealId, String levelPeople
+            , Integer pageNumber, Integer pageSize) {
+        if(serealId == 0){
+            return null;
+        }
+        PageHelper.startPage(pageNumber, pageSize);
+        return levelPeopleMapper.selectByBizSerealPeople(bizType, serealId, levelPeople);
+    }
+
+    @Override
+    public int countByBizSerealPeople(Integer bizType, Integer serealId, String levelPeople) {
+
+        return levelPeopleMapper.countByBizSerealPeople(bizType, serealId, levelPeople);
     }
 
     @Override

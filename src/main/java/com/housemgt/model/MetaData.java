@@ -5,7 +5,7 @@ public class MetaData {
 
     private String bizName;
 
-    private String bizType;
+    private Integer bizType;
 
     private String serealName;
 
@@ -25,12 +25,12 @@ public class MetaData {
         this.bizName = bizName == null ? null : bizName.trim();
     }
 
-    public String getBizType() {
+    public Integer getBizType() {
         return bizType;
     }
 
-    public void setBizType(String bizType) {
-        this.bizType = bizType == null ? null : bizType.trim();
+    public void setBizType(Integer bizType) {
+        this.bizType = bizType;
     }
 
     public String getSerealName() {
@@ -41,13 +41,4 @@ public class MetaData {
         this.serealName = serealName == null ? null : serealName.trim();
     }
 
-    @Override
-    public String toString() {
-        return "MetaData{" +
-                "serealId=" + serealId +
-                ", bizName='" + bizName + '\'' +
-                ", bizType='" + bizType + '\'' +
-                ", serealName='" + serealName + '\'' +
-                '}';
-    }
 }

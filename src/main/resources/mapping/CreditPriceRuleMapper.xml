@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.housemgt.mapper.CreditPriceRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.housemgt.model.CreditPriceRule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sereal_id" property="serealId" jdbcType="INTEGER" />
+    <result column="base_grade" property="baseGrade" jdbcType="VARCHAR" />
+    <result column="special_price_grade" property="specialPriceGrade" jdbcType="VARCHAR" />
+    <result column="first_price_grade" property="firstPriceGrade" jdbcType="VARCHAR" />
+    <result column="second_price_grade" property="secondPriceGrade" jdbcType="VARCHAR" />
+    <result column="level_people" property="levelPeople" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sereal_id, base_grade, special_price_grade, first_price_grade, second_price_grade, 
+    level_people
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_credit_price_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="countBySerealId" resultType="int">
+    select count(*)
+    from t_credit_price_rule
+    where sereal_id = #{serealId,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySerealId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_credit_price_rule
+    where sereal_id = #{serealId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_credit_price_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.housemgt.model.CreditPriceRule" >
+    insert into t_credit_price_rule (id, sereal_id, base_grade, 
+      special_price_grade, first_price_grade, second_price_grade, 
+      level_people)
+    values (#{id,jdbcType=INTEGER}, #{serealId,jdbcType=INTEGER}, #{baseGrade,jdbcType=VARCHAR}, 
+      #{specialPriceGrade,jdbcType=VARCHAR}, #{firstPriceGrade,jdbcType=VARCHAR}, #{secondPriceGrade,jdbcType=VARCHAR}, 
+      #{levelPeople,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.housemgt.model.CreditPriceRule" >
+    insert into t_credit_price_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serealId != null" >
+        sereal_id,
+      </if>
+      <if test="baseGrade != null" >
+        base_grade,
+      </if>
+      <if test="specialPriceGrade != null" >
+        special_price_grade,
+      </if>
+      <if test="firstPriceGrade != null" >
+        first_price_grade,
+      </if>
+      <if test="secondPriceGrade != null" >
+        second_price_grade,
+      </if>
+      <if test="levelPeople != null" >
+        level_people,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serealId != null" >
+        #{serealId,jdbcType=INTEGER},
+      </if>
+      <if test="baseGrade != null" >
+        #{baseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPriceGrade != null" >
+        #{specialPriceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPriceGrade != null" >
+        #{firstPriceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPriceGrade != null" >
+        #{secondPriceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeople != null" >
+        #{levelPeople,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.housemgt.model.CreditPriceRule" >
+    update t_credit_price_rule
+    <set >
+      <if test="serealId != null" >
+        sereal_id = #{serealId,jdbcType=INTEGER},
+      </if>
+      <if test="baseGrade != null" >
+        base_grade = #{baseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPriceGrade != null" >
+        special_price_grade = #{specialPriceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPriceGrade != null" >
+        first_price_grade = #{firstPriceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="secondPriceGrade != null" >
+        second_price_grade = #{secondPriceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeople != null" >
+        level_people = #{levelPeople,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.housemgt.model.CreditPriceRule" >
+    update t_credit_price_rule
+    set sereal_id = #{serealId,jdbcType=INTEGER},
+      base_grade = #{baseGrade,jdbcType=VARCHAR},
+      special_price_grade = #{specialPriceGrade,jdbcType=VARCHAR},
+      first_price_grade = #{firstPriceGrade,jdbcType=VARCHAR},
+      second_price_grade = #{secondPriceGrade,jdbcType=VARCHAR},
+      level_people = #{levelPeople,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

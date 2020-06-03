@@ -1,16 +1,16 @@
 package com.housemgt.mapper;
 
-import com.housemgt.model.CreditJobRule;
+import com.housemgt.model.CreditAdditionalRule;
 
 import java.util.List;
 
-public interface CreditJobRuleMapper {
+public interface CreditAdditionalRuleMapper {
     /**
      *  增加计分规则
      */
-    int insertSelective(CreditJobRule record);
+    int insertSelective(CreditAdditionalRule record);
 
-    int insert(CreditJobRule record);
+    int insert(CreditAdditionalRule record);
 
     /**
      *  删除计分规则
@@ -20,20 +20,17 @@ public interface CreditJobRuleMapper {
     /**
      *  修改计分规则
      */
-    int updateByPrimaryKeySelective(CreditJobRule record);
+    int updateByPrimaryKeySelective(CreditAdditionalRule record);
 
-    int updateByPrimaryKey(CreditJobRule record);
+    int updateByPrimaryKey(CreditAdditionalRule record);
 
     /**
      *  根据系列id查询计分规则配置
      */
-    List<CreditJobRule> selectBySerealId(Integer serealId);
+    List<CreditAdditionalRule> selectBySerealId(Integer serealId);
 
     /**
      * 根据系列id查询计分规则配置总数
      */
     int countBySerealId(Integer serealId);
-
-    CreditJobRule selectByPrimaryKey(Integer id);
-
 }

@@ -1,5 +1,6 @@
 package com.housemgt.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.housemgt.mapper.CreditJobRuleMapper;
 import com.housemgt.model.CreditJobRule;
 import com.housemgt.service.AreaRuleService;
@@ -40,7 +41,20 @@ public class CreditJobRuleServiceImpl implements CreditJobRuleService {
     }
 
     @Override
-    public List<CreditJobRule> selectBySerealId(Integer serealId) {
+    public int countBySerealId(Integer serealId) {
+        if (serealId < 1){
+            return 0;
+        }
+        return creditJobRuleMapper.countBySerealId(serealId);
+    }
+
+
+    @Override
+    public List<CreditJobRule> selectBySerealId(Integer serealId, Integer pageNumber, Integer pageSize) {
+        if(serealId == 0){
+            return null;
+        }
+        PageHelper.startPage(pageNumber, pageSize);
         return creditJobRuleMapper.selectBySerealId(serealId);
     }
 }

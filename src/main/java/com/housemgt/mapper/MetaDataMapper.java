@@ -26,6 +26,11 @@ public interface MetaDataMapper {
     List<MetaData> selectAll();
 
     /**
+     * 查询业务类型
+     */
+    List<MetaData> selectBizType();
+
+    /**
      * 根据业务类型查询元数据配置列表
      */
     List<MetaData> selectByBizType(Integer bizType);
