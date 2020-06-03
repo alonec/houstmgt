@@ -1,11 +1,11 @@
-package com.housemgt.controller;
+package com.housemgt.controller.feng;
 
 import com.housemgt.common.msg.CodeMsg;
 import com.housemgt.common.msg.ResultMsg;
 import com.housemgt.controller.DTO.PageDTO;
-import com.housemgt.model.CreditAdditionalRule;
+import com.housemgt.model.CreditPriceRule;
 import com.housemgt.model.LevelPeople;
-import com.housemgt.service.CreditAdditionalRuleService;
+import com.housemgt.service.CreditPriceRuleService;
 import com.housemgt.service.LevelPeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,34 +17,40 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /***
- * 计分规则  -- 附加分系列
+ * 计分规则  -- 奖励分系列
  * @author chenxin
  */
 @Controller
-public class CreditAdditionalRuleController {
+public class CreditPriceRuleController {
 
     @Autowired
-    private CreditAdditionalRuleService creditAdditionalRuleService;
+    private CreditPriceRuleService creditPriceRuleService;
 
     @Autowired
     private LevelPeopleService levelPeopleService;
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/additional/add")
+    @RequestMapping(value = "/rule/credit/price/add")
     public Object add(@RequestParam("serealId") Integer serealId,
                       @RequestParam("levelPeopleId") Integer levelPeopleId,
-                      @RequestParam("grade") String grade) {
+                      @RequestParam("baseGrade") String baseGrade,
+                      @RequestParam("specialPriceGrade") String specialPriceGrade,
+                      @RequestParam("firstPriceGrade") String firstPriceGrade,
+                      @RequestParam("secondPriceGrade") String secondPriceGrade) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeople = levelPeopleService.selectByPrimaryKey(levelPeopleId);
-            CreditAdditionalRule creditAdditionalRule = new CreditAdditionalRule();
-            creditAdditionalRule.setSerealId(serealId);
+            CreditPriceRule creditPriceRule = new CreditPriceRule();
+            creditPriceRule.setSerealId(serealId);
             if (levelPeople != null){
-                creditAdditionalRule.setLevelPeople(levelPeople.getLevelPeople());
-                creditAdditionalRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
+                creditPriceRule.setLevelPeople(levelPeople.getLevelPeople());
+                creditPriceRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
             }
-            creditAdditionalRule.setGrade(grade);
-            if (creditAdditionalRuleService.insertSelective(creditAdditionalRule) > 0){
+            creditPriceRule.setBaseGrade(baseGrade);
+            creditPriceRule.setSpecialPriceGrade(specialPriceGrade);
+            creditPriceRule.setFirstPriceGrade(firstPriceGrade);
+            creditPriceRule.setSecondPriceGrade(secondPriceGrade);
+            if (creditPriceRuleService.insertSelective(creditPriceRule) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -57,23 +63,29 @@ public class CreditAdditionalRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/additional/update")
+    @RequestMapping(value = "/rule/credit/price/update")
     public Object update(@RequestParam("id") Integer id,
                          @RequestParam("serealId") Integer serealId,
                          @RequestParam("levelPeopleId") Integer levelPeopleId,
-                         @RequestParam("grade") String grade) {
+                         @RequestParam("baseGrade") String baseGrade,
+                         @RequestParam("specialPriceGrade") String specialPriceGrade,
+                         @RequestParam("firstPriceGrade") String firstPriceGrade,
+                         @RequestParam("secondPriceGrade") String secondPriceGrade) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeople = levelPeopleService.selectByPrimaryKey(levelPeopleId);
-            CreditAdditionalRule creditAdditionalRule = new CreditAdditionalRule();
-            creditAdditionalRule.setId(id);
-            creditAdditionalRule.setSerealId(serealId);
+            CreditPriceRule creditPriceRule = new CreditPriceRule();
+            creditPriceRule.setId(id);
+            creditPriceRule.setSerealId(serealId);
             if (levelPeople != null){
-                creditAdditionalRule.setLevelPeople(levelPeople.getLevelPeople());
-                creditAdditionalRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
+                creditPriceRule.setLevelPeople(levelPeople.getLevelPeople());
+                creditPriceRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
             }
-            creditAdditionalRule.setGrade(grade);
-            if (creditAdditionalRuleService.updateByPrimaryKeySelective(creditAdditionalRule) > 0){
+            creditPriceRule.setBaseGrade(baseGrade);
+            creditPriceRule.setSpecialPriceGrade(specialPriceGrade);
+            creditPriceRule.setFirstPriceGrade(firstPriceGrade);
+            creditPriceRule.setSecondPriceGrade(secondPriceGrade);
+            if (creditPriceRuleService.updateByPrimaryKeySelective(creditPriceRule) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -86,11 +98,11 @@ public class CreditAdditionalRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/additional/delete")
+    @RequestMapping(value = "/rule/credit/price/delete")
     public Object delete(@RequestParam("id") Integer id) {
         ResultMsg resultMsg = null;
         try {
-            if (creditAdditionalRuleService.deleteByPrimaryKey(id) > 0){
+            if (creditPriceRuleService.deleteByPrimaryKey(id) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -103,15 +115,15 @@ public class CreditAdditionalRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/additional/selectBySerealId",  method = { RequestMethod.GET})
+    @RequestMapping(value = "/rule/credit/price/selectBySerealId",  method = { RequestMethod.GET})
     public Object selectBySerealId(@RequestParam("serealId") Integer serealId,
                                    @RequestParam("pageNumber") Integer pageNumber,
                                    @RequestParam("pageSize") Integer pageSize) {
         ResultMsg resultMsg = null;
         try {
             PageDTO pageDTO = new PageDTO();
-            int count = creditAdditionalRuleService.countBySerealId(serealId);
-            List<CreditAdditionalRule> data = creditAdditionalRuleService.selectBySerealId(serealId, pageNumber, pageSize);
+            int count = creditPriceRuleService.countBySerealId(serealId);
+            List<CreditPriceRule> data = creditPriceRuleService.selectBySerealId(serealId, pageNumber, pageSize);
             if (data != null && data.size() > 0){
                 pageDTO.setTotals(count);
                 pageDTO.setList(data);

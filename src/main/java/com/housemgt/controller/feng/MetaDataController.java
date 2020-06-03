@@ -1,4 +1,4 @@
-package com.housemgt.controller;
+package com.housemgt.controller.feng;
 
 import com.housemgt.common.msg.CodeMsg;
 import com.housemgt.common.msg.ResultMsg;

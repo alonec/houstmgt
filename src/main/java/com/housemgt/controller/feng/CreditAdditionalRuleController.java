@@ -1,11 +1,11 @@
-package com.housemgt.controller;
+package com.housemgt.controller.feng;
 
 import com.housemgt.common.msg.CodeMsg;
 import com.housemgt.common.msg.ResultMsg;
 import com.housemgt.controller.DTO.PageDTO;
-import com.housemgt.model.CreditJobRule;
+import com.housemgt.model.CreditAdditionalRule;
 import com.housemgt.model.LevelPeople;
-import com.housemgt.service.CreditJobRuleService;
+import com.housemgt.service.CreditAdditionalRuleService;
 import com.housemgt.service.LevelPeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,36 +17,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /***
- * 计分规则  -- 职务职称系列
+ * 计分规则  -- 附加分系列
  * @author chenxin
  */
 @Controller
-public class CreditJobRuleController {
+public class CreditAdditionalRuleController {
 
     @Autowired
-    private CreditJobRuleService creditJobRuleService;
+    private CreditAdditionalRuleService creditAdditionalRuleService;
 
     @Autowired
     private LevelPeopleService levelPeopleService;
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/job/add")
+    @RequestMapping(value = "/rule/credit/additional/add")
     public Object add(@RequestParam("serealId") Integer serealId,
                       @RequestParam("levelPeopleId") Integer levelPeopleId,
-                      @RequestParam("baseGrade") String baseGrade,
                       @RequestParam("grade") String grade) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeople = levelPeopleService.selectByPrimaryKey(levelPeopleId);
-            CreditJobRule creditJobRule = new CreditJobRule();
-            creditJobRule.setSerealId(serealId);
+            CreditAdditionalRule creditAdditionalRule = new CreditAdditionalRule();
+            creditAdditionalRule.setSerealId(serealId);
             if (levelPeople != null){
-                creditJobRule.setLevelPeople(levelPeople.getLevelPeople());
-                creditJobRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
+                creditAdditionalRule.setLevelPeople(levelPeople.getLevelPeople());
+                creditAdditionalRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
             }
-            creditJobRule.setBaseGrade(baseGrade);
-            creditJobRule.setGrade(grade);
-            if (creditJobRuleService.insertSelective(creditJobRule) > 0){
+            creditAdditionalRule.setGrade(grade);
+            if (creditAdditionalRuleService.insertSelective(creditAdditionalRule) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -59,25 +57,23 @@ public class CreditJobRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/job/update")
+    @RequestMapping(value = "/rule/credit/additional/update")
     public Object update(@RequestParam("id") Integer id,
                          @RequestParam("serealId") Integer serealId,
                          @RequestParam("levelPeopleId") Integer levelPeopleId,
-                         @RequestParam("baseGrade") String baseGrade,
                          @RequestParam("grade") String grade) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeople = levelPeopleService.selectByPrimaryKey(levelPeopleId);
-            CreditJobRule creditJobRule = new CreditJobRule();
-            creditJobRule.setId(id);
-            creditJobRule.setSerealId(serealId);
+            CreditAdditionalRule creditAdditionalRule = new CreditAdditionalRule();
+            creditAdditionalRule.setId(id);
+            creditAdditionalRule.setSerealId(serealId);
             if (levelPeople != null){
-                creditJobRule.setLevelPeople(levelPeople.getLevelPeople());
-                creditJobRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
+                creditAdditionalRule.setLevelPeople(levelPeople.getLevelPeople());
+                creditAdditionalRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
             }
-            creditJobRule.setBaseGrade(baseGrade);
-            creditJobRule.setGrade(grade);
-            if (creditJobRuleService.updateByPrimaryKeySelective(creditJobRule) > 0){
+            creditAdditionalRule.setGrade(grade);
+            if (creditAdditionalRuleService.updateByPrimaryKeySelective(creditAdditionalRule) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -90,11 +86,11 @@ public class CreditJobRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/job/delete")
+    @RequestMapping(value = "/rule/credit/additional/delete")
     public Object delete(@RequestParam("id") Integer id) {
         ResultMsg resultMsg = null;
         try {
-            if (creditJobRuleService.deleteByPrimaryKey(id) > 0){
+            if (creditAdditionalRuleService.deleteByPrimaryKey(id) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -107,15 +103,15 @@ public class CreditJobRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/job/selectBySerealId",  method = { RequestMethod.GET})
+    @RequestMapping(value = "/rule/credit/additional/selectBySerealId",  method = { RequestMethod.GET})
     public Object selectBySerealId(@RequestParam("serealId") Integer serealId,
                                    @RequestParam("pageNumber") Integer pageNumber,
                                    @RequestParam("pageSize") Integer pageSize) {
         ResultMsg resultMsg = null;
         try {
             PageDTO pageDTO = new PageDTO();
-            int count = creditJobRuleService.countBySerealId(serealId);
-            List<CreditJobRule> data = creditJobRuleService.selectBySerealId(serealId, pageNumber, pageSize);
+            int count = creditAdditionalRuleService.countBySerealId(serealId);
+            List<CreditAdditionalRule> data = creditAdditionalRuleService.selectBySerealId(serealId, pageNumber, pageSize);
             if (data != null && data.size() > 0){
                 pageDTO.setTotals(count);
                 pageDTO.setList(data);

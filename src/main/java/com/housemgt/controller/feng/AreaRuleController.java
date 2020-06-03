@@ -1,13 +1,11 @@
-package com.housemgt.controller;
+package com.housemgt.controller.feng;
 
 import com.housemgt.common.msg.CodeMsg;
 import com.housemgt.common.msg.ResultMsg;
 import com.housemgt.controller.DTO.PageDTO;
-import com.housemgt.model.CreditHandyManRule;
-import com.housemgt.model.CreditJobRule;
+import com.housemgt.model.AreaRule;
 import com.housemgt.model.LevelPeople;
-import com.housemgt.model.MetaData;
-import com.housemgt.service.CreditHandymanRuleService;
+import com.housemgt.service.AreaRuleService;
 import com.housemgt.service.LevelPeopleService;
 import com.housemgt.service.MetaDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,36 +18,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /***
- * 计分规则  -- 工勤系列
+ * 面积规则
  * @author chenxin
  */
 @Controller
-public class CreditHandymanRuleController {
+public class AreaRuleController {
 
     @Autowired
-    private CreditHandymanRuleService creditHandymanRuleService;
+    private AreaRuleService areaRuleService;
+
+    @Autowired
+    private MetaDataService metaDataService;
 
     @Autowired
     private LevelPeopleService levelPeopleService;
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/handyman/add")
+    @RequestMapping(value = "/rule/area/add")
     public Object add(@RequestParam("serealId") Integer serealId,
                       @RequestParam("levelPeopleId") Integer levelPeopleId,
-                      @RequestParam("baseGrade") String baseGrade,
-                      @RequestParam("grade") String grade) {
+                      @RequestParam("levelGrade") String levelGrade) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeople = levelPeopleService.selectByPrimaryKey(levelPeopleId);
-            CreditHandyManRule creditHandyManRule = new CreditHandyManRule();
-            creditHandyManRule.setSerealId(serealId);
+            AreaRule areaRule = new AreaRule();
+            areaRule.setSerealId(serealId);
             if (levelPeople != null){
-                creditHandyManRule.setLevelPeople(levelPeople.getLevelPeople());
-                creditHandyManRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
+                areaRule.setLevelName(levelPeople.getLevelName());
+                areaRule.setLevelPeople(levelPeople.getLevelPeople());
             }
-            creditHandyManRule.setBaseGrade(baseGrade);
-            creditHandyManRule.setGrade(grade);
-            if (creditHandymanRuleService.insertSelective(creditHandyManRule) > 0){
+            areaRule.setLevelGrade(levelGrade);
+            if (areaRuleService.insertSelective(areaRule) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -62,25 +61,23 @@ public class CreditHandymanRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/handyman/update")
-    public Object update(@RequestParam("id") Integer id,
+    @RequestMapping(value = "/rule/area/update")
+    public Object update(@RequestParam("areaRuleId") Integer areaRuleId,
                          @RequestParam("serealId") Integer serealId,
                          @RequestParam("levelPeopleId") Integer levelPeopleId,
-                         @RequestParam("baseGrade") String baseGrade,
-                         @RequestParam("grade") String grade) {
+                         @RequestParam("levelGrade") String levelGrade) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeople = levelPeopleService.selectByPrimaryKey(levelPeopleId);
-            CreditHandyManRule creditHandyManRule = new CreditHandyManRule();
-            creditHandyManRule.setId(id);
-            creditHandyManRule.setSerealId(serealId);
+            AreaRule areaRule = new AreaRule();
+            areaRule.setAreaRuleId(areaRuleId);
+            areaRule.setSerealId(serealId);
             if (levelPeople != null){
-                creditHandyManRule.setLevelPeople(levelPeople.getLevelPeople());
-                creditHandyManRule.setLevelPeopleId(levelPeople.getLevelPeopleId());
+                areaRule.setLevelName(levelPeople.getLevelName());
+                areaRule.setLevelPeople(levelPeople.getLevelPeople());
             }
-            creditHandyManRule.setBaseGrade(baseGrade);
-            creditHandyManRule.setGrade(grade);
-            if (creditHandymanRuleService.updateByPrimaryKeySelective(creditHandyManRule) > 0){
+            areaRule.setLevelGrade(levelGrade);
+            if (areaRuleService.updateByPrimaryKeySelective(areaRule) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -93,11 +90,11 @@ public class CreditHandymanRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/handyman/delete")
-    public Object delete(@RequestParam("id") Integer id) {
+    @RequestMapping(value = "/rule/area/delete")
+    public Object delete(@RequestParam("areaRuleId") Integer areaRuleId) {
         ResultMsg resultMsg = null;
         try {
-            if (creditHandymanRuleService.deleteByPrimaryKey(id) > 0){
+            if (areaRuleService.deleteByPrimaryKey(areaRuleId) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -110,15 +107,15 @@ public class CreditHandymanRuleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rule/credit/handyman/selectBySerealId",  method = { RequestMethod.GET})
+    @RequestMapping(value = "/rule/area/selectBySerealId",  method = { RequestMethod.GET})
     public Object selectBySerealId(@RequestParam("serealId") Integer serealId,
                                    @RequestParam("pageNumber") Integer pageNumber,
                                    @RequestParam("pageSize") Integer pageSize) {
         ResultMsg resultMsg = null;
         try {
             PageDTO pageDTO = new PageDTO();
-            int count = creditHandymanRuleService.countBySerealId(serealId);
-            List<CreditHandyManRule> data = creditHandymanRuleService.selectBySerealId(serealId, pageNumber, pageSize);
+            int count = areaRuleService.countBySerealId(serealId);
+            List<AreaRule> data = areaRuleService.selectBySerealId(serealId, pageNumber, pageSize);
             if (data != null && data.size() > 0){
                 pageDTO.setTotals(count);
                 pageDTO.setList(data);
