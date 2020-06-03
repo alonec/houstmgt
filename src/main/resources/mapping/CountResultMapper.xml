@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.housemgt.mapper.CountResultMapper" >
+  <resultMap id="BaseResultMap" type="com.housemgt.model.CountResult" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="staff_code" property="staffCode" jdbcType="VARCHAR" />
+    <result column="staff_name" property="staffName" jdbcType="VARCHAR" />
+    <result column="college" property="college" jdbcType="VARCHAR" />
+    <result column="highest_degree" property="highestDegree" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="full_time_college_time" property="fullTimeCollegeTime" jdbcType="DATE" />
+    <result column="start_work_time" property="startWorkTime" jdbcType="DATE" />
+    <result column="school_work_time" property="schoolWorkTime" jdbcType="DATE" />
+    <result column="job_base_grade" property="jobBaseGrade" jdbcType="VARCHAR" />
+    <result column="time_in_job" property="timeInJob" jdbcType="DATE" />
+    <result column="time_in_job_count" property="timeInJobCount" jdbcType="VARCHAR" />
+    <result column="time_in_job_count_grade" property="timeInJobCountGrade" jdbcType="VARCHAR" />
+    <result column="doctoral_degree_get_time" property="doctoralDegreeGetTime" jdbcType="DATE" />
+    <result column="length_of_service_grade" property="lengthOfServiceGrade" jdbcType="VARCHAR" />
+    <result column="age_division_grade" property="ageDivisionGrade" jdbcType="VARCHAR" />
+    <result column="award_grade" property="awardGrade" jdbcType="VARCHAR" />
+    <result column="depedndent_of_martyrs_grade" property="depedndentOfMartyrsGrade" jdbcType="VARCHAR" />
+    <result column="returned_overseas_grade" property="returnedOverseasGrade" jdbcType="VARCHAR" />
+    <result column="only_child_grade" property="onlyChildGrade" jdbcType="VARCHAR" />
+    <result column="dual_employee_spouse_grade" property="dualEmployeeSpouseGrade" jdbcType="VARCHAR" />
+    <result column="total_grade" property="totalGrade" jdbcType="VARCHAR" />
+    <result column="show_times" property="showTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, staff_code, staff_name, college, highest_degree, job, sex, birthday, full_time_college_time, 
+    start_work_time, school_work_time, job_base_grade, time_in_job, time_in_job_count, 
+    time_in_job_count_grade, doctoral_degree_get_time, length_of_service_grade, age_division_grade, 
+    award_grade, depedndent_of_martyrs_grade, returned_overseas_grade, only_child_grade, 
+    dual_employee_spouse_grade, total_grade, show_times
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_count_result
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_count_result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.housemgt.model.CountResult" >
+    insert into t_count_result (id, staff_code, staff_name, 
+      college, highest_degree, job, 
+      sex, birthday, full_time_college_time, 
+      start_work_time, school_work_time, job_base_grade, 
+      time_in_job, time_in_job_count, time_in_job_count_grade, 
+      doctoral_degree_get_time, length_of_service_grade, 
+      age_division_grade, award_grade, depedndent_of_martyrs_grade, 
+      returned_overseas_grade, only_child_grade, 
+      dual_employee_spouse_grade, total_grade, show_times
+      )
+    values (#{id,jdbcType=INTEGER}, #{staffCode,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, 
+      #{college,jdbcType=VARCHAR}, #{highestDegree,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{fullTimeCollegeTime,jdbcType=DATE}, 
+      #{startWorkTime,jdbcType=DATE}, #{schoolWorkTime,jdbcType=DATE}, #{jobBaseGrade,jdbcType=VARCHAR}, 
+      #{timeInJob,jdbcType=DATE}, #{timeInJobCount,jdbcType=VARCHAR}, #{timeInJobCountGrade,jdbcType=VARCHAR}, 
+      #{doctoralDegreeGetTime,jdbcType=DATE}, #{lengthOfServiceGrade,jdbcType=VARCHAR}, 
+      #{ageDivisionGrade,jdbcType=VARCHAR}, #{awardGrade,jdbcType=VARCHAR}, #{depedndentOfMartyrsGrade,jdbcType=VARCHAR}, 
+      #{returnedOverseasGrade,jdbcType=VARCHAR}, #{onlyChildGrade,jdbcType=VARCHAR}, 
+      #{dualEmployeeSpouseGrade,jdbcType=VARCHAR}, #{totalGrade,jdbcType=VARCHAR}, #{showTimes,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.housemgt.model.CountResult" >
+    insert into t_count_result
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="staffCode != null" >
+        staff_code,
+      </if>
+      <if test="staffName != null" >
+        staff_name,
+      </if>
+      <if test="college != null" >
+        college,
+      </if>
+      <if test="highestDegree != null" >
+        highest_degree,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="fullTimeCollegeTime != null" >
+        full_time_college_time,
+      </if>
+      <if test="startWorkTime != null" >
+        start_work_time,
+      </if>
+      <if test="schoolWorkTime != null" >
+        school_work_time,
+      </if>
+      <if test="jobBaseGrade != null" >
+        job_base_grade,
+      </if>
+      <if test="timeInJob != null" >
+        time_in_job,
+      </if>
+      <if test="timeInJobCount != null" >
+        time_in_job_count,
+      </if>
+      <if test="timeInJobCountGrade != null" >
+        time_in_job_count_grade,
+      </if>
+      <if test="doctoralDegreeGetTime != null" >
+        doctoral_degree_get_time,
+      </if>
+      <if test="lengthOfServiceGrade != null" >
+        length_of_service_grade,
+      </if>
+      <if test="ageDivisionGrade != null" >
+        age_division_grade,
+      </if>
+      <if test="awardGrade != null" >
+        award_grade,
+      </if>
+      <if test="depedndentOfMartyrsGrade != null" >
+        depedndent_of_martyrs_grade,
+      </if>
+      <if test="returnedOverseasGrade != null" >
+        returned_overseas_grade,
+      </if>
+      <if test="onlyChildGrade != null" >
+        only_child_grade,
+      </if>
+      <if test="dualEmployeeSpouseGrade != null" >
+        dual_employee_spouse_grade,
+      </if>
+      <if test="totalGrade != null" >
+        total_grade,
+      </if>
+      <if test="showTimes != null" >
+        show_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null" >
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="highestDegree != null" >
+        #{highestDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="fullTimeCollegeTime != null" >
+        #{fullTimeCollegeTime,jdbcType=DATE},
+      </if>
+      <if test="startWorkTime != null" >
+        #{startWorkTime,jdbcType=DATE},
+      </if>
+      <if test="schoolWorkTime != null" >
+        #{schoolWorkTime,jdbcType=DATE},
+      </if>
+      <if test="jobBaseGrade != null" >
+        #{jobBaseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInJob != null" >
+        #{timeInJob,jdbcType=DATE},
+      </if>
+      <if test="timeInJobCount != null" >
+        #{timeInJobCount,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInJobCountGrade != null" >
+        #{timeInJobCountGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="doctoralDegreeGetTime != null" >
+        #{doctoralDegreeGetTime,jdbcType=DATE},
+      </if>
+      <if test="lengthOfServiceGrade != null" >
+        #{lengthOfServiceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="ageDivisionGrade != null" >
+        #{ageDivisionGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="awardGrade != null" >
+        #{awardGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="depedndentOfMartyrsGrade != null" >
+        #{depedndentOfMartyrsGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="returnedOverseasGrade != null" >
+        #{returnedOverseasGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="onlyChildGrade != null" >
+        #{onlyChildGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="dualEmployeeSpouseGrade != null" >
+        #{dualEmployeeSpouseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="totalGrade != null" >
+        #{totalGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="showTimes != null" >
+        #{showTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.housemgt.model.CountResult" >
+    update t_count_result
+    <set >
+      <if test="staffCode != null" >
+        staff_code = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        staff_name = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null" >
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="highestDegree != null" >
+        highest_degree = #{highestDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="fullTimeCollegeTime != null" >
+        full_time_college_time = #{fullTimeCollegeTime,jdbcType=DATE},
+      </if>
+      <if test="startWorkTime != null" >
+        start_work_time = #{startWorkTime,jdbcType=DATE},
+      </if>
+      <if test="schoolWorkTime != null" >
+        school_work_time = #{schoolWorkTime,jdbcType=DATE},
+      </if>
+      <if test="jobBaseGrade != null" >
+        job_base_grade = #{jobBaseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInJob != null" >
+        time_in_job = #{timeInJob,jdbcType=DATE},
+      </if>
+      <if test="timeInJobCount != null" >
+        time_in_job_count = #{timeInJobCount,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInJobCountGrade != null" >
+        time_in_job_count_grade = #{timeInJobCountGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="doctoralDegreeGetTime != null" >
+        doctoral_degree_get_time = #{doctoralDegreeGetTime,jdbcType=DATE},
+      </if>
+      <if test="lengthOfServiceGrade != null" >
+        length_of_service_grade = #{lengthOfServiceGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="ageDivisionGrade != null" >
+        age_division_grade = #{ageDivisionGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="awardGrade != null" >
+        award_grade = #{awardGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="depedndentOfMartyrsGrade != null" >
+        depedndent_of_martyrs_grade = #{depedndentOfMartyrsGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="returnedOverseasGrade != null" >
+        returned_overseas_grade = #{returnedOverseasGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="onlyChildGrade != null" >
+        only_child_grade = #{onlyChildGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="dualEmployeeSpouseGrade != null" >
+        dual_employee_spouse_grade = #{dualEmployeeSpouseGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="totalGrade != null" >
+        total_grade = #{totalGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="showTimes != null" >
+        show_times = #{showTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.housemgt.model.CountResult" >
+    update t_count_result
+    set staff_code = #{staffCode,jdbcType=VARCHAR},
+      staff_name = #{staffName,jdbcType=VARCHAR},
+      college = #{college,jdbcType=VARCHAR},
+      highest_degree = #{highestDegree,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      full_time_college_time = #{fullTimeCollegeTime,jdbcType=DATE},
+      start_work_time = #{startWorkTime,jdbcType=DATE},
+      school_work_time = #{schoolWorkTime,jdbcType=DATE},
+      job_base_grade = #{jobBaseGrade,jdbcType=VARCHAR},
+      time_in_job = #{timeInJob,jdbcType=DATE},
+      time_in_job_count = #{timeInJobCount,jdbcType=VARCHAR},
+      time_in_job_count_grade = #{timeInJobCountGrade,jdbcType=VARCHAR},
+      doctoral_degree_get_time = #{doctoralDegreeGetTime,jdbcType=DATE},
+      length_of_service_grade = #{lengthOfServiceGrade,jdbcType=VARCHAR},
+      age_division_grade = #{ageDivisionGrade,jdbcType=VARCHAR},
+      award_grade = #{awardGrade,jdbcType=VARCHAR},
+      depedndent_of_martyrs_grade = #{depedndentOfMartyrsGrade,jdbcType=VARCHAR},
+      returned_overseas_grade = #{returnedOverseasGrade,jdbcType=VARCHAR},
+      only_child_grade = #{onlyChildGrade,jdbcType=VARCHAR},
+      dual_employee_spouse_grade = #{dualEmployeeSpouseGrade,jdbcType=VARCHAR},
+      total_grade = #{totalGrade,jdbcType=VARCHAR},
+      show_times = #{showTimes,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

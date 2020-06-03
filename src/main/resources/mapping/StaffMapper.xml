@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.housemgt.mapper.StaffMapper">
+  <resultMap id="BaseResultMap" type="com.housemgt.model.Staff">
+    <id column="staff_id" jdbcType="INTEGER" property="staffId" />
+    <result column="staff_name" jdbcType="VARCHAR" property="staffName" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="staff_code" jdbcType="VARCHAR" property="staffCode" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="office_time" jdbcType="DATE" property="officeTime" />
+    <result column="professional_title" jdbcType="DATE" property="professionalTitle" />
+    <result column="appointment_time" jdbcType="DATE" property="appointmentTime" />
+    <result column="full_time_college_time" jdbcType="DATE" property="fullTimeCollegeTime" />
+    <result column="start_work_time" jdbcType="DATE" property="startWorkTime" />
+    <result column="school_work_time" jdbcType="DATE" property="schoolWorkTime" />
+    <result column="highest_degree" jdbcType="VARCHAR" property="highestDegree" />
+    <result column="marital_status" jdbcType="INTEGER" property="maritalStatus" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="ID_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    staff_id, staff_name, sex, staff_code, birthday, job, office_time, professional_title, 
+    appointment_time, full_time_college_time, start_work_time, school_work_time, highest_degree, 
+    marital_status, phone_number, ID_card, create_date, modify_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_staff
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_staff
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.housemgt.model.Staff">
+    insert into t_staff (staff_id, staff_name, sex, 
+      staff_code, birthday, job, 
+      office_time, professional_title, appointment_time, 
+      full_time_college_time, start_work_time, school_work_time, 
+      highest_degree, marital_status, phone_number, 
+      ID_card, create_date, modify_date
+      )
+    values (#{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{staffCode,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{job,jdbcType=VARCHAR}, 
+      #{officeTime,jdbcType=DATE}, #{professionalTitle,jdbcType=DATE}, #{appointmentTime,jdbcType=DATE}, 
+      #{fullTimeCollegeTime,jdbcType=DATE}, #{startWorkTime,jdbcType=DATE}, #{schoolWorkTime,jdbcType=DATE}, 
+      #{highestDegree,jdbcType=VARCHAR}, #{maritalStatus,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.housemgt.model.Staff">
+    insert into t_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="staffName != null">
+        staff_name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="staffCode != null">
+        staff_code,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="officeTime != null">
+        office_time,
+      </if>
+      <if test="professionalTitle != null">
+        professional_title,
+      </if>
+      <if test="appointmentTime != null">
+        appointment_time,
+      </if>
+      <if test="fullTimeCollegeTime != null">
+        full_time_college_time,
+      </if>
+      <if test="startWorkTime != null">
+        start_work_time,
+      </if>
+      <if test="schoolWorkTime != null">
+        school_work_time,
+      </if>
+      <if test="highestDegree != null">
+        highest_degree,
+      </if>
+      <if test="maritalStatus != null">
+        marital_status,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="idCard != null">
+        ID_card,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffName != null">
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null">
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="officeTime != null">
+        #{officeTime,jdbcType=DATE},
+      </if>
+      <if test="professionalTitle != null">
+        #{professionalTitle,jdbcType=DATE},
+      </if>
+      <if test="appointmentTime != null">
+        #{appointmentTime,jdbcType=DATE},
+      </if>
+      <if test="fullTimeCollegeTime != null">
+        #{fullTimeCollegeTime,jdbcType=DATE},
+      </if>
+      <if test="startWorkTime != null">
+        #{startWorkTime,jdbcType=DATE},
+      </if>
+      <if test="schoolWorkTime != null">
+        #{schoolWorkTime,jdbcType=DATE},
+      </if>
+      <if test="highestDegree != null">
+        #{highestDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        #{maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.housemgt.model.Staff">
+    update t_staff
+    <set>
+      <if test="staffName != null">
+        staff_name = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null">
+        staff_code = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="officeTime != null">
+        office_time = #{officeTime,jdbcType=DATE},
+      </if>
+      <if test="professionalTitle != null">
+        professional_title = #{professionalTitle,jdbcType=DATE},
+      </if>
+      <if test="appointmentTime != null">
+        appointment_time = #{appointmentTime,jdbcType=DATE},
+      </if>
+      <if test="fullTimeCollegeTime != null">
+        full_time_college_time = #{fullTimeCollegeTime,jdbcType=DATE},
+      </if>
+      <if test="startWorkTime != null">
+        start_work_time = #{startWorkTime,jdbcType=DATE},
+      </if>
+      <if test="schoolWorkTime != null">
+        school_work_time = #{schoolWorkTime,jdbcType=DATE},
+      </if>
+      <if test="highestDegree != null">
+        highest_degree = #{highestDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        marital_status = #{maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        ID_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.housemgt.model.Staff">
+    update t_staff
+    set staff_name = #{staffName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      staff_code = #{staffCode,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      job = #{job,jdbcType=VARCHAR},
+      office_time = #{officeTime,jdbcType=DATE},
+      professional_title = #{professionalTitle,jdbcType=DATE},
+      appointment_time = #{appointmentTime,jdbcType=DATE},
+      full_time_college_time = #{fullTimeCollegeTime,jdbcType=DATE},
+      start_work_time = #{startWorkTime,jdbcType=DATE},
+      school_work_time = #{schoolWorkTime,jdbcType=DATE},
+      highest_degree = #{highestDegree,jdbcType=VARCHAR},
+      marital_status = #{maritalStatus,jdbcType=INTEGER},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      ID_card = #{idCard,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </update>
+</mapper>

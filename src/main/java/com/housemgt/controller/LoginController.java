@@ -2,6 +2,7 @@ package com.housemgt.controller;
 
 import com.housemgt.common.msg.CodeMsg;
 import com.housemgt.common.msg.ResultMsg;
+import com.housemgt.model.User;
 import com.housemgt.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
@@ -27,7 +28,9 @@ public class LoginController {
         ResultMsg resultMsg = null;
         try {
             if (baseService.checkLogin(username, password, isAdmin) == true) {
-                resultMsg = ResultMsg.success();
+                User user = new User();
+                user.setUsername(username);
+                resultMsg = ResultMsg.success(user);
                 System.out.println("用戶："+ username + "," + password + "登录成功");
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.PARAMETER_ISNULL);
@@ -47,12 +50,12 @@ public class LoginController {
                              @RequestParam("password") String password,
                            @RequestParam("isAdmin") int isAdmin) {
         ResultMsg resultMsg = null;
-        boolean result = baseService.registerData(username,password, isAdmin);
-        if(result){
-            resultMsg = ResultMsg.success();
-        } else {
-            resultMsg = ResultMsg.error(CodeMsg.ERROR);
-        }
+//        boolean result = baseService.registerData(username,password, isAdmin);
+//        if(result){
+//            resultMsg = ResultMsg.success();
+//        } else {
+//            resultMsg = ResultMsg.error(CodeMsg.ERROR);
+//        }
         return resultMsg;
     }
 }

@@ -106,7 +106,6 @@ public class AreaRuleController {
         return resultMsg;
     }
 
-
     @ResponseBody
     @RequestMapping(value = "/rule/area/selectBySerealId",  method = { RequestMethod.GET})
     public Object selectBySerealId(@RequestParam("serealId") Integer serealId,

@@ -27,5 +27,5 @@ public interface UserService {
      * @param password 密码
      * @return
      */
-    public boolean registerData(String username, String password, int isAdmin);
+    public boolean registerData(String username, String password, int isAdmin, int staffId);
 }
