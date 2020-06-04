@@ -16,7 +16,7 @@ public interface CommunityDao {
     @Insert({"insert into",TABLE_NAME,"(",INSET_FIELDS,") values (#{name},#{doorNumber},#{mailingAddress},#{postcode},#{linkman},#{phoneNumber},#{policeStation},#{policeman},#{policePhonenum},#{buildingPicture})" })
     void addCommunity(Community community);
 
-    @Delete({"delete from",TABLE_NAME,"where name=#{arg1} and doorNumber=#{arg0} "})
+    @Delete({"delete from",TABLE_NAME,"where name=#{arg0} and doorNumber=#{arg1} "})
     void deleteCommunity(String name, String doorNumber);
 
     //更新操作

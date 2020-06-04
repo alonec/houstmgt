@@ -31,10 +31,58 @@ public class Apply {
     private String spouseStatus;
     private double spouseHousingMonetizationSubsidies;
     private String spouseAddress;
-    private String result;
+    private int result;
     private String approvalOpinion;
     private Date approvalTime;
     private String approvalPerson;
+    private String awardGrade;
+    private String returnedOverseas;
+    private String depedndentOfMartyrs;
+    private  String onlyChild;
+    private String dualEmployeeSpouse;
+
+
+    public String getAwardGrade() {
+        return awardGrade;
+    }
+
+    public void setAwardGrade(String awardGrade) {
+        this.awardGrade = awardGrade;
+    }
+
+    public String getReturnedOverseas() {
+        return returnedOverseas;
+    }
+
+    public void setReturnedOverseas(String returnedOverseas) {
+        this.returnedOverseas = returnedOverseas;
+    }
+
+    public String getDepedndentOfMartyrs() {
+        return depedndentOfMartyrs;
+    }
+
+    public void setDepedndentOfMartyrs(String depedndentOfMartyrs) {
+        this.depedndentOfMartyrs = depedndentOfMartyrs;
+    }
+
+    public String getOnlyChild() {
+        return onlyChild;
+    }
+
+    public void setOnlyChild(String onlyChild) {
+        this.onlyChild = onlyChild;
+    }
+
+    public String getDualEmployeeSpouse() {
+        return dualEmployeeSpouse;
+    }
+
+    public void setDualEmployeeSpouse(String dualEmployeeSpouse) {
+        this.dualEmployeeSpouse = dualEmployeeSpouse;
+    }
+
+
 
     public String getName() {
         return name;
@@ -260,11 +308,11 @@ public class Apply {
         this.spouseAddress = spouseAddress;
     }
 
-    public String getResult() {
+    public int getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(int result) {
         this.result = result;
     }
 

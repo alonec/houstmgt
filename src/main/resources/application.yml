@@ -35,3 +35,11 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+# 开启SpringBoot 的 debug;让控制台打印自动配置的报告
+debug: true
+logging:
+  pattern:
+    console: "%-5level %logger{50} - %msg%n"
+  register-shutdown-hook: false
+  level:
+    root: debug
