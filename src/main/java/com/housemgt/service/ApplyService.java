@@ -31,4 +31,26 @@ public class ApplyService {
         messageDTO.setList(applyHouseDao.getAllApply(page));
         return messageDTO;
     }
+
+    //查询已审核的
+    public List<Apply> getYesApply(){
+        return applyHouseDao.getYesApply();
+    }
+    //查询未审核
+    public List<Apply> getNoApply(){
+        return applyHouseDao.getNoApply();
+    }
+
+    //修改个人申请操作
+    public void deleteApply(String name, String staffCode){
+        applyHouseDao.deleteSelfApply(name,staffCode);
+    }
+    //撤销个人申请操作
+    public void addApply(Apply apply){
+        applyHouseDao.addApply(apply);
+    }
+    //提交申请操作
+    public void updateApply(Apply apply){
+        applyHouseDao.updateApply(apply);
+    }
 }

@@ -1,45 +1,99 @@
 package com.housemgt.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class Apply {
+    @JsonProperty(value = "name")
     private String name;
+    @JsonProperty(value = "sex")
     private String sex;
+    @JsonProperty(value = "staffCode")
     private String staffCode;
+    @JsonProperty(value = "birthdate")
     private Date birthdate;
+    @JsonProperty(value = "postsHeld")
     private String postsHeld;
+    @JsonProperty(value = "timeInJob")
     private Date timeInJob;
+    @JsonProperty(value = "appointmentTime")
     private Date appointmentTime;
+    @JsonProperty(value = "startingDates")
     private Date startingDates;
+    @JsonProperty(value = "timeToWork")
     private Date timeToWork;
+    @JsonProperty(value = "timeToSchool")
     private Date timeToSchool;
+    @JsonProperty(value = "officialAcademicCredentials")
     private String officialAcademicCredentials;
+    @JsonProperty(value = "marriage")
     private String marriage;
+    @JsonProperty(value = "linkNum")
     private String linkNum;
+    @JsonProperty(value = "idCardNo")
     private String idCardNo;
+    @JsonProperty(value = "areaOfStructureNow")
     private double areaOfStructureNow;
+    @JsonProperty(value = "statusNow")
     private String statusNow;
+    @JsonProperty(value = "addressNow")
     private String addressNow;
+    @JsonProperty(value = "type")
     private String type;
+    @JsonProperty(value = "spouseName")
     private String spouseName;
+    @JsonProperty(value = "spouseBirthdate")
     private Date spouseBirthdate;
+    @JsonProperty(value = "spouseWorkUnit")
     private String spouseWorkUnit;
+    @JsonProperty(value = "spousePostsHeld")
     private String spousePostsHeld;
+    @JsonProperty(value = "twoStaffCode")
     private String twoStaffCode;
+    @JsonProperty(value = "spouseIdCardNo")
     private String spouseIdCardNo;
+    @JsonProperty(value = "spouseAreaOfStructure")
     private double spouseAreaOfStructure;
+    @JsonProperty(value = "spouseStatus")
     private String spouseStatus;
+    @JsonProperty(value = "spouseHousingMonetizationSubsidies")
     private double spouseHousingMonetizationSubsidies;
+    @JsonProperty(value = "spouseAddress")
     private String spouseAddress;
+    @JsonProperty(value = "result")
     private int result;
+    @JsonProperty(value = "approvalOpinion")
     private String approvalOpinion;
+    @JsonProperty(value = "approvalTime")
     private Date approvalTime;
+    @JsonProperty(value = "approvalPerson")
     private String approvalPerson;
+    @JsonProperty(value = "awardGrade")
     private String awardGrade;
+    @JsonProperty(value = "returnedOverseas")
     private String returnedOverseas;
+    @JsonProperty(value = "depedndentOfMartyrs")
     private String depedndentOfMartyrs;
+    @JsonProperty(value = "onlyChild")
     private  String onlyChild;
+    @JsonProperty(value = "dualEmployeeSpouse")
     private String dualEmployeeSpouse;
+    @JsonProperty(value = "unit")
+    private String unit;
+
+
+
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
 
     public String getAwardGrade() {

@@ -16,7 +16,7 @@ public interface ApplyHouseDao {
             "eToSchool,officialAcademicCredentials,marriage,linkNum,idCardNo,areaOfStructureNow,statusNow,addressNow,typ" +
             "e,spouseName,spouseBirthdate,spouseWorkUnit,spousePostsHeld,twoStaffCode,spouseIdCardNo,spouseAreaOfStructu" +
             "re,spouseStatus,spouseHousingMonetizationSubsidies,spouseAddress,result,approvalOpinion,approvalTime,approv" +
-            "alPerson,awardGrade,returnedOverseas,depedndentOfMartyrs,onlyChild,dualEmployeeSpouse";
+            "alPerson,awardGrade,returnedOverseas,depedndentOfMartyrs,onlyChild,dualEmployeeSpouse,unit";
     String SET_UPDATE = "set sex=#{sex},birthdate=#{birthdate},postsHeld=#{postsHeld},timeInJob=#{timeInJob},appointmentT" +
             "ime=#{appointmentTime},startingDates=#{startingDates},timeToWork=#{timeToWork},timeToSchool=#{timeToSchool}" +
             ",officialAcademicCredentials=#{officialAcademicCredentials},marriage=#{marriage},linkNum=#{linkNum},idCardN" +
@@ -27,7 +27,7 @@ public interface ApplyHouseDao {
             "singMonetizationSubsidies},spouseAddress=#{spouseAddress},result=#{result},approvalOpinion=#{approvalOpinio" +
             "n},approvalTime=#{approvalTime},approvalPerson=#{approvalPerson},awardGrade=#{awardGrade},returnedOverseas=" +
             "#{returnedOverseas},depedndentOfMartyrs=#{depedndentOfMartyrs},onlyChild=#{onlyChild},dualEmployeeSpouse=#{" +
-            "dualEmployeeSpouse}";
+            "dualEmployeeSpouse},unit = #{unit}";
 
     //提交申请操作
     @Insert({"insert into",TABLE_NAME,"(",INSET_FIELDS,") values (#{name},#{sex},#{staffCode},#{birthdate},#{postsHeld}," +
@@ -36,17 +36,16 @@ public interface ApplyHouseDao {
             "},#{spouseBirthdate},#{spouseWorkUnit},#{spousePostsHeld},#{twoStaffCode},#{spouseIdCardNo},#{spouseAreaOfS" +
             "tructure},#{spouseStatus},#{spouseHousingMonetizationSubsidies},#{spouseAddress},#{result},#{approvalOpinio" +
             "n},#{approvalTime},#{approvalPerson},#{awardGrade},#{returnedOverseas},#{depedndentOfMartyrs},#{onlyChild}," +
-            "#{dualEmployeeSpouse})" })
+            "#{dualEmployeeSpouse},#{unit})" })
     void addApply(Apply apply);
 
-    //修改申请操作
+    //修改个人申请操作
     @Update({"update",TABLE_NAME,SET_UPDATE,"where name=#{name} and staffCode = #{staffCode}"})
     void updateApply(Apply apply);
 
-    //撤销申请操作
-    @Delete({"delete  from",TABLE_NAME,"where name = #{arg0} and staffCode=#{staffCode}"})
-    void deleteApply(String name, String staffCode);
-
+    //撤销个人申请操作
+    @Delete({"delete from",TABLE_NAME,"where name=#{arg0} and staffCode=#{arg1} "})
+    void deleteSelfApply(String name, String staffCode);
     //查询所有申请
     @Select({"select count(*) from",TABLE_NAME})
     int getAllApplyNum();
@@ -61,6 +60,14 @@ public interface ApplyHouseDao {
     //查询本人的申请信息
     @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where name = #{arg0} and staffCode=#{arg1}"})
     List<Apply> getSelfApply(String name,String staffCode);
+
+    //查询已审核的
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," where result is not null"})
+    List<Apply> getYesApply();
+
+    //查询未审核
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result is  null"})
+    List<Apply> getNoApply();
 
 }
 

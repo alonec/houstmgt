@@ -60,53 +60,24 @@ public class ApplyTest {
 //        apply.setDepedndentOfMartyrs("1");
 //        apply.setOnlyChild("0");
 //        apply.setDualEmployeeSpouse("0");
+//        apply.setUnit("通信学院");
 //        applyHouseDao.addApply(apply);
+
+//        List<Apply> list = new ArrayList<>();
+//        list = applyHouseDao.getResultApply(0);
+//        for (int i = 0; i <list.size() ; i++) {
+//            System.out.println(list.get(i).getName()+" &&&&&&&&&&&&&&&&&&&&");
+//        }
 //
-        List<Apply> list = new ArrayList<>();
-        list = applyHouseDao.getResultApply(0);
-        for (int i = 0; i <list.size() ; i++) {
-            System.out.println(list.get(i).getName()+" &&&&&&&&&&&&&&&&&&&&");
-        }
+//        List<Apply> list1 = new ArrayList<>();
+//        list1 = applyHouseDao.getSelfApply("徐文涛","16407010224");
+//        System.out.println(list1.get(0).getName()+" &&&&&&&&&&&&&&&&&&&&");
 
-        List<Apply> list1 = new ArrayList<>();
-        list1 = applyHouseDao.getSelfApply("徐文涛","16407010224");
-        System.out.println(list1.get(0).getName()+" &&&&&&&&&&&&&&&&&&&&");
-
-        Apply apply2 = new Apply();
-        apply2.setName("周洁肤");
-        apply2.setSex("男");
-        apply2.setBirthdate(new Date());
-        apply2.setStaffCode("16407010230");
-        apply2.setPostsHeld("教授");
-        apply2.setTimeInJob(new Date());
-        apply2.setAppointmentTime(new Date());
-        apply2.setStartingDates(new Date());
-        apply2.setTimeToWork(new Date());
-        apply2.setTimeToSchool(new Date());
-        apply2.setOfficialAcademicCredentials("博士");
-        apply2.setMarriage("未婚");
-        apply2.setLinkNum("110");
-        apply2.setIdCardNo("610***********");
-        apply2.setAreaOfStructureNow(32.89);
-        apply2.setStatusNow("租房");
-        apply2.setType("新建房");
-        apply2.setSpouseName("侯还穿");
-        apply2.setSpouseBirthdate(new Date());
-        apply2.setSpouseWorkUnit("西安科技大学");
-        apply2.setSpousePostsHeld("教授儿子");
-        apply2.setTwoStaffCode("16******");
-        apply2.setAddressNow("西安科技大学");
-        apply2.setSpouseIdCardNo("610******");
-        apply2.setSpouseAreaOfStructure(90.90);
-        apply2.setSpouseStatus("租房");
-        apply2.setSpouseHousingMonetizationSubsidies(900000.00);
-        apply2.setSpouseAddress("瓦国");
-        applyHouseDao.addApply(apply2);
 
 
         Apply apply1 = new Apply();
         apply1.setName("张欣");
-        apply1.setSex("男");
+        apply1.setSex("man");
         apply1.setBirthdate(new Date());
         apply1.setStaffCode("16407010223");
         apply1.setPostsHeld("教授");
@@ -137,7 +108,9 @@ public class ApplyTest {
         apply1.setResult(0);
         apply1.setApprovalOpinion("tongguo");
         apply1.setApprovalTime(new Date());
+        apply1.setUnit("通信学院");
         applyHouseDao.addApply(apply1);
-        applyHouseDao.updateApply(apply1);
+//        applyHouseDao.updateApply(apply1);
+       // applyHouseDao.deleteSelfApply("张欣","16407010223");
     }
 }
