@@ -48,10 +48,15 @@ public interface ApplyHouseDao {
     void deleteApply(String name, String staffCode);
 
     //查询所有申请
-//    @Select({"select count(*) from",TABLE_NAME})
-//    int getAllApplyNum();
+    @Select({"select count(*) from",TABLE_NAME})
+    int getAllApplyNum();
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"limit #{page} ,10 "})
+    List<Apply> getAllApply(int page);
+
+
+    //管理员查询所有申请通过操作
     @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result = #{arg0} "})
-    List<Apply> getAllApply(int result);
+    List<Apply> getResultApply(int result);
 
     //查询本人的申请信息
     @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where name = #{arg0} and staffCode=#{arg1}"})

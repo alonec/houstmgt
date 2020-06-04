@@ -25,9 +25,10 @@ public class ApplyController {
     ApplyService applyService;
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    @RequestMapping(path = {"/getAllApply/"} , method = { RequestMethod.GET})
+    //管理员查询所有申请通过操作
+    @RequestMapping(path = {"/getResultApply/"} , method = { RequestMethod.GET})
     @ResponseBody
-    public List<Apply> getAllApply(  @RequestParam("result") int  result)  {
+    public List<Apply> getResultApply(  @RequestParam("result") int  result)  {
 
         try {
             List<Apply> list = new ArrayList<>();

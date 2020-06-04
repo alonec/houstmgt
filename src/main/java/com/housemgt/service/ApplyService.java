@@ -14,8 +14,8 @@ public class ApplyService {
     @Autowired
     ApplyHouseDao applyHouseDao;
 
-    //管理员查询所有申请操作
+    //管理员查询所有申请通过操作
     public List<Apply> getAllApply(int result){
-        return  applyHouseDao.getAllApply( result);
+        return  applyHouseDao.getResultApply( result);
     }
 }
