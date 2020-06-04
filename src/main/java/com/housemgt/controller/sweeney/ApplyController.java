@@ -4,6 +4,7 @@ package com.housemgt.controller.sweeney;
 import com.housemgt.common.utils.HouseUtil;
 import com.housemgt.model.Apply;
 import com.housemgt.model.Building;
+import com.housemgt.model.MessageDTO;
 import com.housemgt.service.ApplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,11 +33,44 @@ public class ApplyController {
 
         try {
             List<Apply> list = new ArrayList<>();
-            list = applyService.getAllApply(result);
+            list = applyService.getResultApply(result);
             return list;
         }catch (Exception e){
             logger.error("查询申请通过的失败！！！"+e.getMessage());
            return null;
         }
     }
+
+    //查询本人的申请信息
+    @RequestMapping(path = {"/getSelfApply/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<Apply> getSelfApply(  @RequestParam("name") String   name,
+                                      @RequestParam("staffCode" )String staffCode
+    )  {
+
+        try {
+            List<Apply> list = new ArrayList<>();
+            list = applyService.getSelfApply(name,staffCode);
+            return list;
+        }catch (Exception e){
+            logger.error("查询本人申请的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+    //前端分页查询所有申请
+    @RequestMapping(path = {"/getAllApply/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public MessageDTO getAllApply(@RequestParam("page") int  page)  {
+
+        try {
+            int p = (page - 1)*10;
+            MessageDTO messageDTO = new MessageDTO();
+            messageDTO = applyService.getAllApply(p);
+            return messageDTO;
+        }catch (Exception e){
+            logger.error("查询申请通过的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+
 }
