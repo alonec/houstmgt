@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -26,14 +27,14 @@ public class ApplyController {
 
     @RequestMapping(path = {"/getAllApply/"} , method = { RequestMethod.GET})
     @ResponseBody
-    public List<Apply> getAllApply()  {
+    public List<Apply> getAllApply(  @RequestParam("result") int  result)  {
 
         try {
             List<Apply> list = new ArrayList<>();
-            list = applyService.getAllApply();
+            list = applyService.getAllApply(result);
             return list;
         }catch (Exception e){
-            logger.error("删除小区失败！！！"+e.getMessage());
+            logger.error("查询申请通过的失败！！！"+e.getMessage());
            return null;
         }
     }

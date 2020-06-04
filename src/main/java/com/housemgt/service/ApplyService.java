@@ -15,7 +15,7 @@ public class ApplyService {
     ApplyHouseDao applyHouseDao;
 
     //管理员查询所有申请操作
-    public List<Apply> getAllApply(){
-        return  applyHouseDao.getAllApply();
+    public List<Apply> getAllApply(int result){
+        return  applyHouseDao.getAllApply( result);
     }
 }

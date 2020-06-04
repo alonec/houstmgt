@@ -61,12 +61,17 @@ public class ApplyTest {
 //        apply.setOnlyChild("0");
 //        apply.setDualEmployeeSpouse("0");
 //        applyHouseDao.addApply(apply);
-
+//
         List<Apply> list = new ArrayList<>();
-        list = applyHouseDao.getAllApply();
+        list = applyHouseDao.getAllApply(0);
         for (int i = 0; i <list.size() ; i++) {
             System.out.println(list.get(i).getName()+" &&&&&&&&&&&&&&&&&&&&");
         }
+
+        List<Apply> list1 = new ArrayList<>();
+        list1 = applyHouseDao.getSelfApply("徐文涛","16407010224");
+        System.out.println(list1.get(0).getName()+" &&&&&&&&&&&&&&&&&&&&");
+
 //        Apply apply2 = new Apply();
 //        apply2.setName("周洁肤");
 //        apply2.setSex("男");
