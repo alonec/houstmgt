@@ -33,7 +33,7 @@ public interface ApplyHouseDao {
             "Dates},#{timeToWork},#{timeToSchool},#{officialAcademicCredentials},#{marriage},#{linkNum},#{idCardNo},#{ar" +
             "eaOfStructureNow},#{statusNow},#{addressNow},#{type},#{spouseName},#{spouseBirthdate},#{spouseWorkUnit},#{s" +
             "pousePostsHeld},#{twoStaffCode},#{spouseIdCardNo},#{spouseAreaOfStructure},#{spouseStatus},#{spouseHousingM" +
-            "onetizationSubsidies},#{spouseAddress},#{result},#{approvalOpinion},#{approvalTime},#{approvalPerson},#{awa" +
+            "onetizationSubsidies},#{spouseAddress},3,#{approvalOpinion},#{approvalTime},#{approvalPerson},#{awa" +
             "rdGrade},#{returnedOverseas},#{depedndentOfMartyrs},#{onlyChild},#{dualEmployeeSpouse},#{unit},#{tag})";
     //提交申请操作
     @Insert({"insert into",TABLE_NAME,"(",INSET_FIELDS,") values",IN_NAME })

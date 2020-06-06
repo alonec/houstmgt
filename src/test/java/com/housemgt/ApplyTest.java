@@ -76,7 +76,7 @@ public class ApplyTest {
 //
 //
         Apply apply1 = new Apply();
-        apply1.setName("周洁肤");
+        apply1.setName("陈鑫");
         apply1.setSex("man");
         apply1.setBirthdate(new Date());
         apply1.setStaffCode("16407010230");
@@ -105,7 +105,7 @@ public class ApplyTest {
         apply1.setSpouseHousingMonetizationSubsidies("900000.00");
         apply1.setSpouseAddress("瓦国");
         apply1.setApprovalPerson("梁晨");
-        apply1.setResult(2);
+        //apply1.setResult(2);
         apply1.setApprovalOpinion("");
         apply1.setApprovalTime(new Date());
         apply1.setUnit("");
