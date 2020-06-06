@@ -147,7 +147,7 @@ public class HomeController {
     }
 
 
-    //查看房屋使用状态
+    //更新房屋使用状态
     @RequestMapping(path = {"/updateStatus/"} , method = { RequestMethod.POST})
     @ResponseBody
     public String updateStatus(@RequestParam("elementNumber") String elementNumber,

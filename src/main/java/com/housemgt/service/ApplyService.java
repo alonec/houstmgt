@@ -7,6 +7,7 @@ import com.housemgt.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class ApplyService {
     public List<Apply> getSelfApply(String name,String staffCode){
         return applyHouseDao.getSelfApply( name, staffCode);
     }
-    //前端查询所有申请
+    //前端查询所有常规申请
     public MessageDTO getAllApply(int page){
         MessageDTO messageDTO = new MessageDTO();
         messageDTO.setCount(applyHouseDao.getAllApplyNum());
@@ -32,13 +33,29 @@ public class ApplyService {
         return messageDTO;
     }
 
-    //查询已审核的
+    //前端查询所有即时申请
+    public MessageDTO getAllApplyNow(int page){
+        MessageDTO messageDTO = new MessageDTO();
+        messageDTO.setCount(applyHouseDao.getAllApplyNumNow());
+        messageDTO.setList(applyHouseDao.getAllApplyNow(page));
+        return messageDTO;
+    }
+    //查询已审核常规的
     public List<Apply> getYesApply(){
         return applyHouseDao.getYesApply();
     }
-    //查询未审核
+    //查询常规未审核
     public List<Apply> getNoApply(){
         return applyHouseDao.getNoApply();
+    }
+
+    //查询已审核即时的
+    public List<Apply> getYesApplyNow(){
+        return applyHouseDao.getYesApplyNow();
+    }
+    //查询即时未审核
+    public List<Apply> getNoApplyNow(){
+        return applyHouseDao.getNoApplyNow();
     }
 
     //修改个人申请操作
@@ -53,4 +70,10 @@ public class ApplyService {
     public void updateApply(Apply apply){
         applyHouseDao.updateApply(apply);
     }
+
+    //更新审核状态
+    public  void updateApplyResult(String name, String staffCode, int result, String approvalOpinion, Date approvalTime, String approvalPerson){
+        applyHouseDao.updateApplyResult(name, staffCode, result, approvalOpinion, approvalTime, approvalPerson);
+    }
+
 }

@@ -8,10 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author: xust
- * @since: 2019/12/23 19:31
- */
 
 @Slf4j
 @Repository

@@ -36,7 +36,7 @@ public class Apply {
     @JsonProperty(value = "idCardNo")
     private String idCardNo;
     @JsonProperty(value = "areaOfStructureNow")
-    private double areaOfStructureNow;
+    private String areaOfStructureNow;
     @JsonProperty(value = "statusNow")
     private String statusNow;
     @JsonProperty(value = "addressNow")
@@ -56,11 +56,11 @@ public class Apply {
     @JsonProperty(value = "spouseIdCardNo")
     private String spouseIdCardNo;
     @JsonProperty(value = "spouseAreaOfStructure")
-    private double spouseAreaOfStructure;
+    private String spouseAreaOfStructure;
     @JsonProperty(value = "spouseStatus")
     private String spouseStatus;
     @JsonProperty(value = "spouseHousingMonetizationSubsidies")
-    private double spouseHousingMonetizationSubsidies;
+    private String spouseHousingMonetizationSubsidies;
     @JsonProperty(value = "spouseAddress")
     private String spouseAddress;
     @JsonProperty(value = "result")
@@ -83,9 +83,16 @@ public class Apply {
     private String dualEmployeeSpouse;
     @JsonProperty(value = "unit")
     private String unit;
+    @JsonProperty(value = "tag")
+    private int tag;
 
+    public int getTag() {
+        return tag;
+    }
 
-
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
 
     public String getUnit() {
         return unit;
@@ -250,11 +257,11 @@ public class Apply {
         this.idCardNo = idCardNo;
     }
 
-    public double getAreaOfStructureNow() {
+    public String getAreaOfStructureNow() {
         return areaOfStructureNow;
     }
 
-    public void setAreaOfStructureNow(double areaOfStructureNow) {
+    public void setAreaOfStructureNow(String areaOfStructureNow) {
         this.areaOfStructureNow = areaOfStructureNow;
     }
 
@@ -330,11 +337,11 @@ public class Apply {
         this.spouseIdCardNo = spouseIdCardNo;
     }
 
-    public double getSpouseAreaOfStructure() {
+    public String getSpouseAreaOfStructure() {
         return spouseAreaOfStructure;
     }
 
-    public void setSpouseAreaOfStructure(double spouseAreaOfStructure) {
+    public void setSpouseAreaOfStructure(String spouseAreaOfStructure) {
         this.spouseAreaOfStructure = spouseAreaOfStructure;
     }
 
@@ -346,11 +353,11 @@ public class Apply {
         this.spouseStatus = spouseStatus;
     }
 
-    public double getSpouseHousingMonetizationSubsidies() {
+    public String getSpouseHousingMonetizationSubsidies() {
         return spouseHousingMonetizationSubsidies;
     }
 
-    public void setSpouseHousingMonetizationSubsidies(double spouseHousingMonetizationSubsidies) {
+    public void setSpouseHousingMonetizationSubsidies(String spouseHousingMonetizationSubsidies) {
         this.spouseHousingMonetizationSubsidies = spouseHousingMonetizationSubsidies;
     }
 

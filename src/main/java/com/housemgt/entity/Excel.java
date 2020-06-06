@@ -5,10 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * @author: xust
- * @since: 2019/12/23 16:47
- */
+
 
 @Data
 public class Excel implements Serializable {

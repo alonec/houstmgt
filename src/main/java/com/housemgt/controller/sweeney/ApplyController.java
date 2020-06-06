@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.Date;import java.util.List;
 
 @Controller
 public class ApplyController {
@@ -58,7 +57,7 @@ public class ApplyController {
             return null;
         }
     }
-    //前端分页查询所有申请
+    //前端分页查询所有常规申请
     @RequestMapping(path = {"/getAllApply/"} , method = { RequestMethod.GET})
     @ResponseBody
     public MessageDTO getAllApply(@RequestParam("page") int  page)  {
@@ -73,7 +72,22 @@ public class ApplyController {
             return null;
         }
     }
-    //查询已审核的
+    //前端分页查询所有即时申请
+    @RequestMapping(path = {"/getAllApplyNow/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public MessageDTO getAllApplyNow(@RequestParam("page") int  page)  {
+
+        try {
+            int p = (page - 1)*10;
+            MessageDTO messageDTO = new MessageDTO();
+            messageDTO = applyService.getAllApplyNow(p);
+            return messageDTO;
+        }catch (Exception e){
+            logger.error("查询即时申请通过的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+    //查询常规已审核的
     @RequestMapping(path = {"/getYesApply/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<Apply> getYesApply()  {
@@ -88,7 +102,7 @@ public class ApplyController {
         }
     }
 
-    //查询未审核
+    //查询常规未审核
     @RequestMapping(path = {"/getNoApply/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<Apply> getNoApply()  {
@@ -102,7 +116,129 @@ public class ApplyController {
             return null;
         }
     }
+    //查询常规已即时的
+    @RequestMapping(path = {"/getYesApply/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<Apply> getYesApplyNow()  {
+
+        try {
+            List<Apply> list = new ArrayList<>();
+            list = applyService.getYesApplyNow();
+            return list;
+        }catch (Exception e){
+            logger.error("查询已审核的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+
+    //查询即时未审核
+    @RequestMapping(path = {"/getNoApply/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<Apply> getNoApplyNow()  {
+
+        try {
+            List<Apply> list = new ArrayList<>();
+            list = applyService.getNoApplyNow();
+            return list;
+        }catch (Exception e){
+            logger.error("查询未审核的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
     //修改个人申请操作
+    @RequestMapping(path = {"/updateApply/"} , method = { RequestMethod.POST})
+    @ResponseBody
+    public String updateApply(@RequestParam("name") String name,
+                           @RequestParam("sex") String sex,
+                           @RequestParam("staffCode") String staffCode,
+                           @RequestParam("birthdate") String birthdate,
+                           @RequestParam("postsHeld") String postsHeld,
+                           @RequestParam("timeInJob") String timeInJob,
+                           @RequestParam("startingDates") String startingDates,
+                           @RequestParam("timeToWork") String timeToWork,
+                           @RequestParam("timeToSchool") String timeToSchool,
+                           @RequestParam("officialAcademicCredentials") String officialAcademicCredentials,
+                           @RequestParam("marriage") String marriage,
+                           @RequestParam("linkNum") String linkNum,
+                           @RequestParam("idCardNo") String idCardNo,
+                           @RequestParam("areaOfStructureNow") String areaOfStructureNow,
+                           @RequestParam("statusNow") String statusNow,
+                           @RequestParam("addressNow") String addressNow,
+                           @RequestParam("type") String type,
+                           @RequestParam("spouseName") String spouseName,
+                           @RequestParam("spouseBirthdate") String spouseBirthdate,
+                           @RequestParam("spouseWorkUnit") String spouseWorkUnit,
+                           @RequestParam("spousePostsHeld") String spousePostsHeld,
+                           @RequestParam("twoStaffCode") String twoStaffCode,
+                           @RequestParam("spouseIdCardNo") String spouseIdCardNo,
+                           @RequestParam("spouseAreaOfStructure") String spouseAreaOfStructure,
+                           @RequestParam("spouseStatus") String spouseStatus,
+                           @RequestParam("spouseHousingMonetizationSubsidies") String spouseHousingMonetizationSubsidies,
+                           @RequestParam("spouseAddress") String spouseAddress,
+                           @RequestParam("result") int result,
+                           @RequestParam("approvalOpinion") String approvalOpinion,
+                           @RequestParam("approvalTime") String approvalTime,
+                           @RequestParam("approvalPerson") String approvalPerson,
+                           @RequestParam("awardGrade") String awardGrade,
+                           @RequestParam("returnedOverseas") String returnedOverseas,
+                           @RequestParam("depedndentOfMartyrs") String depedndentOfMartyrs,
+                           @RequestParam("onlyChild") String onlyChild,
+                           @RequestParam("dualEmployeeSpouse") String dualEmployeeSpouse,
+                           @RequestParam("unit") String unit
+    )  {
+
+        try {
+
+            Apply apply = new Apply();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            apply.setName(name);
+            apply.setSex(sex);
+            apply.setBirthdate(simpleDateFormat.parse(birthdate));
+            apply.setStaffCode(staffCode);
+            apply.setPostsHeld(postsHeld);
+            apply.setTimeInJob(simpleDateFormat.parse(timeInJob));
+            apply.setAppointmentTime(simpleDateFormat.parse(approvalTime));
+            apply.setStartingDates(simpleDateFormat.parse(startingDates));
+            apply.setTimeToWork(simpleDateFormat.parse(timeToWork));
+            apply.setTimeToSchool(simpleDateFormat.parse(timeToSchool));
+            apply.setOfficialAcademicCredentials(officialAcademicCredentials);
+            apply.setMarriage(marriage);
+            apply.setLinkNum(linkNum);
+            apply.setIdCardNo(idCardNo);
+            apply.setAreaOfStructureNow(areaOfStructureNow);
+            apply.setStatusNow(statusNow);
+            apply.setType(type);
+            apply.setSpouseName(spouseName);
+            apply.setSpouseBirthdate(simpleDateFormat.parse(spouseBirthdate));
+            apply.setSpouseWorkUnit(spouseWorkUnit);
+            apply.setSpousePostsHeld(spousePostsHeld);
+            apply.setTwoStaffCode(twoStaffCode);
+            apply.setAddressNow(addressNow);
+            apply.setSpouseIdCardNo(spouseIdCardNo);
+            apply.setSpouseAreaOfStructure(spouseAreaOfStructure);
+            apply.setSpouseStatus(spouseStatus);
+            apply.setSpouseHousingMonetizationSubsidies(spouseHousingMonetizationSubsidies);
+            apply.setSpouseAddress(spouseAddress);
+            apply.setApprovalPerson(approvalPerson);
+            apply.setResult(result);
+            apply.setApprovalOpinion(approvalOpinion);
+            apply.setApprovalTime(simpleDateFormat.parse(approvalTime));
+            apply.setApprovalPerson(approvalPerson);
+            apply.setReturnedOverseas(returnedOverseas);
+            apply.setDepedndentOfMartyrs(depedndentOfMartyrs);
+            apply.setOnlyChild(onlyChild);
+            apply.setDualEmployeeSpouse(dualEmployeeSpouse);
+            apply.setUnit(unit);
+            applyService.updateApply(apply);
+            return HouseUtil.getJSONString(0,"修改申请成功");
+        }catch (Exception e){
+            logger.error("修改申请失败！！！"+e.getMessage());
+            return HouseUtil.getJSONString(1,"修改申请失败!!!");
+        }
+    }
+
+
+    //提交申请操作
     @RequestMapping(path = {"/addApply/"} , method = { RequestMethod.POST})
     @ResponseBody
     public String addApply(@RequestParam("name") String name,
@@ -118,7 +254,7 @@ public class ApplyController {
                            @RequestParam("marriage") String marriage,
                            @RequestParam("linkNum") String linkNum,
                            @RequestParam("idCardNo") String idCardNo,
-                           @RequestParam("areaOfStructureNow") double areaOfStructureNow,
+                           @RequestParam("areaOfStructureNow") String areaOfStructureNow,
                            @RequestParam("statusNow") String statusNow,
                            @RequestParam("addressNow") String addressNow,
                            @RequestParam("type") String type,
@@ -128,9 +264,9 @@ public class ApplyController {
                            @RequestParam("spousePostsHeld") String spousePostsHeld,
                            @RequestParam("twoStaffCode") String twoStaffCode,
                            @RequestParam("spouseIdCardNo") String spouseIdCardNo,
-                           @RequestParam("spouseAreaOfStructure") double spouseAreaOfStructure,
+                           @RequestParam("spouseAreaOfStructure") String spouseAreaOfStructure,
                            @RequestParam("spouseStatus") String spouseStatus,
-                           @RequestParam("spouseHousingMonetizationSubsidies") double spouseHousingMonetizationSubsidies,
+                           @RequestParam("spouseHousingMonetizationSubsidies") String spouseHousingMonetizationSubsidies,
                            @RequestParam("spouseAddress") String spouseAddress,
                            @RequestParam("result") int result,
                            @RequestParam("approvalOpinion") String approvalOpinion,
@@ -193,10 +329,6 @@ public class ApplyController {
             return HouseUtil.getJSONString(1,"增加申请失败!!!");
         }
     }
-
-
-    //提交申请操作
-
     //撤销个人申请操作
     @RequestMapping(path = {"/deleteApply/"} , method = { RequestMethod.GET})
     @ResponseBody
@@ -212,4 +344,27 @@ public class ApplyController {
             return HouseUtil.getJSONString(1,"撤销申请失败!!!");
         }
     }
+
+    //更新审核状态
+    @RequestMapping(path = {"/updateApplyResult/"} , method = { RequestMethod.POST})
+    @ResponseBody
+    public String updateApplyResult(@RequestParam("name") String name,
+                              @RequestParam("staffCode") String staffCode,
+                              @RequestParam("result") int result,
+                              @RequestParam("approvalOpinion") String approvalOpinion,
+                              @RequestParam("approvalTime") String approvalTime,
+                              @RequestParam("approvalPerson") String approvalPerson
+    )  {
+
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            applyService.updateApplyResult(name,staffCode,result,approvalOpinion,simpleDateFormat.parse(approvalTime),approvalPerson);
+            return HouseUtil.getJSONString(0,"修改状态成功");
+        }catch (Exception e){
+            logger.error("修改状态失败！！！"+e.getMessage());
+            return HouseUtil.getJSONString(1,"修改状态失败!!!");
+        }
+    }
+
+
 }

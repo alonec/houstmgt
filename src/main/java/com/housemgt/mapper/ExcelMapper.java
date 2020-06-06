@@ -7,10 +7,6 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-/**
- * @author: xust
- * @since: 2019/12/23 16:52
- */
 
 public interface ExcelMapper extends Mapper<Excel> {
 

@@ -8,10 +8,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.ExecutionException;
 
-/**
- * @author: xust
- * @since: 2019/12/23 16:53
- */
 
 @RestController
 @RequestMapping("excel")

@@ -5,6 +5,7 @@ import com.housemgt.model.Apply;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -16,7 +17,7 @@ public interface ApplyHouseDao {
             "eToSchool,officialAcademicCredentials,marriage,linkNum,idCardNo,areaOfStructureNow,statusNow,addressNow,typ" +
             "e,spouseName,spouseBirthdate,spouseWorkUnit,spousePostsHeld,twoStaffCode,spouseIdCardNo,spouseAreaOfStructu" +
             "re,spouseStatus,spouseHousingMonetizationSubsidies,spouseAddress,result,approvalOpinion,approvalTime,approv" +
-            "alPerson,awardGrade,returnedOverseas,depedndentOfMartyrs,onlyChild,dualEmployeeSpouse,unit";
+            "alPerson,awardGrade,returnedOverseas,depedndentOfMartyrs,onlyChild,dualEmployeeSpouse,unit,tag";
     String SET_UPDATE = "set sex=#{sex},birthdate=#{birthdate},postsHeld=#{postsHeld},timeInJob=#{timeInJob},appointmentT" +
             "ime=#{appointmentTime},startingDates=#{startingDates},timeToWork=#{timeToWork},timeToSchool=#{timeToSchool}" +
             ",officialAcademicCredentials=#{officialAcademicCredentials},marriage=#{marriage},linkNum=#{linkNum},idCardN" +
@@ -27,16 +28,15 @@ public interface ApplyHouseDao {
             "singMonetizationSubsidies},spouseAddress=#{spouseAddress},result=#{result},approvalOpinion=#{approvalOpinio" +
             "n},approvalTime=#{approvalTime},approvalPerson=#{approvalPerson},awardGrade=#{awardGrade},returnedOverseas=" +
             "#{returnedOverseas},depedndentOfMartyrs=#{depedndentOfMartyrs},onlyChild=#{onlyChild},dualEmployeeSpouse=#{" +
-            "dualEmployeeSpouse},unit = #{unit}";
-
+            "dualEmployeeSpouse},unit = #{unit},tag = #{tag}";
+    String IN_NAME = " (#{name},#{sex},#{staffCode},#{birthdate},#{postsHeld},#{timeInJob},#{appointmentTime},#{starting" +
+            "Dates},#{timeToWork},#{timeToSchool},#{officialAcademicCredentials},#{marriage},#{linkNum},#{idCardNo},#{ar" +
+            "eaOfStructureNow},#{statusNow},#{addressNow},#{type},#{spouseName},#{spouseBirthdate},#{spouseWorkUnit},#{s" +
+            "pousePostsHeld},#{twoStaffCode},#{spouseIdCardNo},#{spouseAreaOfStructure},#{spouseStatus},#{spouseHousingM" +
+            "onetizationSubsidies},#{spouseAddress},#{result},#{approvalOpinion},#{approvalTime},#{approvalPerson},#{awa" +
+            "rdGrade},#{returnedOverseas},#{depedndentOfMartyrs},#{onlyChild},#{dualEmployeeSpouse},#{unit},#{tag})";
     //提交申请操作
-    @Insert({"insert into",TABLE_NAME,"(",INSET_FIELDS,") values (#{name},#{sex},#{staffCode},#{birthdate},#{postsHeld}," +
-            "#{timeInJob},#{appointmentTime},#{startingDates},#{timeToWork},#{timeToSchool},#{officialAcademicCredential" +
-            "s},#{marriage},#{linkNum},#{idCardNo},#{areaOfStructureNow},#{statusNow},#{addressNow},#{type},#{spouseName" +
-            "},#{spouseBirthdate},#{spouseWorkUnit},#{spousePostsHeld},#{twoStaffCode},#{spouseIdCardNo},#{spouseAreaOfS" +
-            "tructure},#{spouseStatus},#{spouseHousingMonetizationSubsidies},#{spouseAddress},#{result},#{approvalOpinio" +
-            "n},#{approvalTime},#{approvalPerson},#{awardGrade},#{returnedOverseas},#{depedndentOfMartyrs},#{onlyChild}," +
-            "#{dualEmployeeSpouse},#{unit})" })
+    @Insert({"insert into",TABLE_NAME,"(",INSET_FIELDS,") values",IN_NAME })
     void addApply(Apply apply);
 
     //修改个人申请操作
@@ -46,28 +46,45 @@ public interface ApplyHouseDao {
     //撤销个人申请操作
     @Delete({"delete from",TABLE_NAME,"where name=#{arg0} and staffCode=#{arg1} "})
     void deleteSelfApply(String name, String staffCode);
-    //查询所有申请
-    @Select({"select count(*) from",TABLE_NAME})
+
+
+    //查询所有常规申请
+    @Select({"select count(*) from",TABLE_NAME,"where tag=0 "})
     int getAllApplyNum();
-    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"limit #{page} ,10 "})
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where tag=1 limit #{page} ,10 "})
     List<Apply> getAllApply(int page);
 
+    //查询所有即时申请
+    @Select({"select count(*) from",TABLE_NAME,"where tag=0 "})
+    int getAllApplyNumNow();
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where tag=0 limit #{page},10 "})
+    List<Apply> getAllApplyNow(int page);
 
-    //管理员查询所有申请通过操作
-    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result = #{arg0} "})
+    //管理员查询所有常规通过操作
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result = #{arg0}  "})
     List<Apply> getResultApply(int result);
 
     //查询本人的申请信息
     @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where name = #{arg0} and staffCode=#{arg1}"})
     List<Apply> getSelfApply(String name,String staffCode);
 
-    //查询已审核的
-    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," where result is not null"})
+    //查询已审核常规的
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," where result  >1 and tag=1"})
     List<Apply> getYesApply();
 
-    //查询未审核
-    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result is  null"})
+    //查询未审核常规
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result  >1 and tag=1"})
     List<Apply> getNoApply();
+    //查询已审核即时的
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," where result  >1 and tag=0"})
+    List<Apply> getYesApplyNow();
 
+    //查询未审核即时
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result >1 and tag=0"})
+    List<Apply> getNoApplyNow();
+
+    //更新审核状态
+    @Update({"update",TABLE_NAME,"set result =#{arg2},approvalOpinion=#{arg3},approvalTime=#{arg4},approvalPerson=#{arg5} where name=#{arg0} and staffCode=#{arg1}"})
+    void updateApplyResult(String name, String staffCode, int result, String approvalOpinion, Date approvalTime, String approvalPerson);
 }
 
