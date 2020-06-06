@@ -103,7 +103,7 @@ public class ApplyController {
     }
 
     //查询常规未审核
-    @RequestMapping(path = {"/getNoApply/"} , method = { RequestMethod.GET})
+    @RequestMapping(path = {"/getNoApplyNow/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<Apply> getNoApply()  {
 
@@ -117,7 +117,7 @@ public class ApplyController {
         }
     }
     //查询常规已即时的
-    @RequestMapping(path = {"/getYesApply/"} , method = { RequestMethod.GET})
+    @RequestMapping(path = {"/getYesApplyNow/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<Apply> getYesApplyNow()  {
 
