@@ -3,6 +3,8 @@ package com.housemgt.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
@@ -170,7 +172,19 @@ public class Apply {
     }
 
     public Date getBirthdate() {
-        return birthdate;
+
+        //return birthdate;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = birthdate;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
 
     public void setBirthdate(Date birthdate) {
@@ -186,7 +200,19 @@ public class Apply {
     }
 
     public Date getTimeInJob() {
-        return timeInJob;
+
+        //return timeInJob;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = timeInJob;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
 
     public void setTimeInJob(Date timeInJob) {
@@ -194,7 +220,19 @@ public class Apply {
     }
 
     public Date getAppointmentTime() {
-        return appointmentTime;
+
+        //return appointmentTime;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = appointmentTime;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
 
     public void setAppointmentTime(Date appointmentTime) {
@@ -202,15 +240,41 @@ public class Apply {
     }
 
     public Date getStartingDates() {
-        return startingDates;
+
+
+        //return startingDates;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = startingDates;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
+
 
     public void setStartingDates(Date startingDates) {
         this.startingDates = startingDates;
     }
 
     public Date getTimeToWork() {
-        return timeToWork;
+
+        //return timeToWork;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = timeToWork;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
 
     public void setTimeToWork(Date timeToWork) {
@@ -218,7 +282,19 @@ public class Apply {
     }
 
     public Date getTimeToSchool() {
-        return timeToSchool;
+
+        //return timeToSchool;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = timeToSchool;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
 
     public void setTimeToSchool(Date timeToSchool) {
@@ -298,7 +374,19 @@ public class Apply {
     }
 
     public Date getSpouseBirthdate() {
-        return spouseBirthdate;
+
+        //return spouseBirthdate;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = spouseBirthdate;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
 
     public void setSpouseBirthdate(Date spouseBirthdate) {
@@ -386,7 +474,19 @@ public class Apply {
     }
 
     public Date getApprovalTime() {
-        return approvalTime;
+
+        //return approvalTime;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");    //格式化规则
+        Date date = approvalTime;         //获得你要处理的时间 Date型
+        String strDate= sdf.format(date ); //格式化成yyyy-MM-dd格式的时间字符串
+        Date newDate = null;
+        try {
+            newDate = sdf.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date resultDate = new java.sql.Date(newDate.getTime());//最后转换成 java.sql.Date类
+        return resultDate;
     }
 
     public void setApprovalTime(Date approvalTime) {

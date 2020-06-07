@@ -3,6 +3,7 @@ package com.housemgt.controller.sweeney;
 
 import com.housemgt.common.utils.HouseUtil;
 import com.housemgt.model.Apply;
+import com.housemgt.model.ApplyPart;
 import com.housemgt.model.MessageDTO;
 import com.housemgt.service.ApplyService;
 import org.slf4j.Logger;
@@ -367,4 +368,78 @@ public class ApplyController {
     }
 
 
+    //查询常规已审核的
+    @RequestMapping(path = {"/getYesApplyF/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<ApplyPart> getYesApplyF()  {
+
+        try {
+            List<ApplyPart> list = new ArrayList<>();
+            list = applyService.getYesApplyF();
+            return list;
+        }catch (Exception e){
+            logger.error("查询已审核的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+
+    //查询常规未审核
+    @RequestMapping(path = {"/getNoApplyNowF/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<ApplyPart> getNoApplyF()  {
+
+        try {
+            List<ApplyPart> list = new ArrayList<>();
+            list = applyService.getNoApplyF();
+            return list;
+        }catch (Exception e){
+            logger.error("查询未审核的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+    //查询常规已即时的
+    @RequestMapping(path = {"/getYesApplyNowF/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<ApplyPart> getYesApplyNowF()  {
+
+        try {
+            List<ApplyPart> list = new ArrayList<>();
+            list = applyService.getYesApplyNowF();
+            return list;
+        }catch (Exception e){
+            logger.error("查询已审核的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+
+    //查询即时未审核
+    @RequestMapping(path = {"/getNoApplyF/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<ApplyPart> getNoApplyNowF()  {
+
+        try {
+            List<ApplyPart> list = new ArrayList<>();
+            list = applyService.getNoApplyNowF();
+            return list;
+        }catch (Exception e){
+            logger.error("查询未审核的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+
+    //详情展示
+    @RequestMapping(path = {"/getYesApplyByName/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<Apply> getYesApplyByName(@RequestParam("name") String name,
+                                         @RequestParam("staffCode") String staffCode)  {
+
+        try {
+            List<Apply> list = new ArrayList<>();
+            list = applyService.getYesApplyByName(name, staffCode);
+            return list;
+        }catch (Exception e){
+            logger.error("查询已审核的失败！！！"+e.getMessage());
+            return null;
+        }
+    }
 }

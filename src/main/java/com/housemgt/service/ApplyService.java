@@ -3,6 +3,7 @@ package com.housemgt.service;
 
 import com.housemgt.Dao.ApplyHouseDao;
 import com.housemgt.model.Apply;
+import com.housemgt.model.ApplyPart;
 import com.housemgt.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,4 +77,31 @@ public class ApplyService {
         applyHouseDao.updateApplyResult(name, staffCode, result, approvalOpinion, approvalTime, approvalPerson);
     }
 
+
+
+    //查询已审核常规的
+    public List<ApplyPart> getYesApplyF(){
+        return applyHouseDao.getYesApplyF();
+    }
+    //查询常规未审核
+    public List<ApplyPart> getNoApplyF(){
+        return applyHouseDao.getNoApplyF();
+    }
+
+    //查询已审核即时的
+    public List<ApplyPart> getYesApplyNowF(){
+        return applyHouseDao.getYesApplyNowF();
+    }
+    //查询即时未审核
+    public List<ApplyPart> getNoApplyNowF(){
+        return applyHouseDao.getNoApplyNowF();
+    }
+
+
+
+    //查看详情页
+    public List<Apply> getYesApplyByName(String name,String SatffCode)
+    {
+        return applyHouseDao.getYesApplyByName(name, SatffCode);
+    }
 }
