@@ -1,6 +1,7 @@
 package com.housemgt.service;
 
 
+import com.housemgt.Dao.ActivityStatusDao;
 import com.housemgt.Dao.ApplyHouseDao;
 import com.housemgt.model.Apply;
 import com.housemgt.model.ApplyPart;
@@ -16,6 +17,9 @@ public class ApplyService {
 
     @Autowired
     ApplyHouseDao applyHouseDao;
+
+    @Autowired
+    ActivityStatusDao activityStatusDao;
 
     //管理员查询所有申请通过操作
     public List<Apply> getResultApply(int result){
@@ -63,11 +67,12 @@ public class ApplyService {
     public void deleteApply(String name, String staffCode){
         applyHouseDao.deleteSelfApply(name,staffCode);
     }
-    //撤销个人申请操作
+    //个人申请操作
     public void addApply(Apply apply){
         applyHouseDao.addApply(apply);
+        activityStatusDao.addStatus(apply.getName(),apply.getStaffCode(),1);
     }
-    //提交申请操作
+    //更新申请操作
     public void updateApply(Apply apply){
         applyHouseDao.updateApply(apply);
     }
@@ -75,6 +80,7 @@ public class ApplyService {
     //更新审核状态
     public  void updateApplyResult(String name, String staffCode, int result, String approvalOpinion, Date approvalTime, String approvalPerson){
         applyHouseDao.updateApplyResult(name, staffCode, result, approvalOpinion, approvalTime, approvalPerson);
+        activityStatusDao.updateStatus(name,staffCode,2);
     }
 
 
