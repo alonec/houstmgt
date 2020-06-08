@@ -15,7 +15,7 @@ public class ActivityService {
         activityStatusDao.updateStatus(name, staffCode, status);
     }
 
-    public int selectStatus(String name,String staffCode){
-        return  activityStatusDao.selectStatus(name, staffCode);
+    public int selectStatus(String staffCode){
+        return  activityStatusDao.selectStatus(staffCode);
     }
 }

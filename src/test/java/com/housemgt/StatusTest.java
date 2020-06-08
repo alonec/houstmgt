@@ -19,6 +19,6 @@ public class StatusTest {
     public void contextLoads() {
         activityStatusDao.addStatus("周洁肤","16407010223",1);
         activityStatusDao.updateStatus("徐文涛","16407010223",3);
-        System.out.println(activityStatusDao.selectStatus("徐文涛","16407010223"));
+        System.out.println(activityStatusDao.selectStatus("徐文涛"));
     }
 }

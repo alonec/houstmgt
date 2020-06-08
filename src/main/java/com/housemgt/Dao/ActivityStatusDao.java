@@ -29,6 +29,6 @@ public interface ActivityStatusDao {
 
 
     //查询操作
-    @Select({"select status from",TABLE_NAME,"where name = #{arg0} and staffCode= #{arg1}"})
-    int selectStatus(String name,String staffCode);
+    @Select({"select status from",TABLE_NAME,"where staffCode= #{arg0}"})
+    int selectStatus(String staffCode);
 }

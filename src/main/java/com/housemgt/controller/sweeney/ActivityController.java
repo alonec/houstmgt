@@ -1,7 +1,5 @@
 package com.housemgt.controller.sweeney;
 
-
-import com.housemgt.model.Apply;
 import com.housemgt.service.ActivityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 public class ActivityController {
@@ -26,15 +23,15 @@ public class ActivityController {
 
     @RequestMapping(path = {"/getStatus/"} , method = { RequestMethod.GET})
     @ResponseBody
-    public int getStatus(@RequestParam("name") String   name,
+    public int getStatus(//@RequestParam("name") String   name,
                                     @RequestParam("staffCode" )String staffCode
     )  {
 
         try {
-            return  activityService.selectStatus(name, staffCode);
+            return  activityService.selectStatus( staffCode);
 
         }catch (Exception e){
-            return Integer.MAX_VALUE;
+            return 0;
         }
     }
 
