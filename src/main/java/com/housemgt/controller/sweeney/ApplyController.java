@@ -150,43 +150,44 @@ public class ApplyController {
     @RequestMapping(path = {"/updateApply/"} , method = { RequestMethod.POST})
     @ResponseBody
     public String updateApply(@RequestParam("name") String name,
-                           @RequestParam("sex") String sex,
-                           @RequestParam("staffCode") String staffCode,
-                           @RequestParam("birthdate") String birthdate,
-                           @RequestParam("postsHeld") String postsHeld,
-                           @RequestParam("timeInJob") String timeInJob,
-                           @RequestParam("appointmentTime") String  appointmentTime,
-                           @RequestParam("startingDates") String startingDates,
-                           @RequestParam("timeToWork") String timeToWork,
-                           @RequestParam("timeToSchool") String timeToSchool,
-                           @RequestParam("officialAcademicCredentials") String officialAcademicCredentials,
-                           @RequestParam("marriage") String marriage,
-                           @RequestParam("linkNum") String linkNum,
-                           @RequestParam("idCardNo") String idCardNo,
-                           @RequestParam("areaOfStructureNow") String areaOfStructureNow,
-                           @RequestParam("statusNow") String statusNow,
-                           @RequestParam("addressNow") String addressNow,
-                           @RequestParam("type") String type,
-                           @RequestParam("spouseName") String spouseName,
-                           @RequestParam("spouseBirthdate") String spouseBirthdate,
-                           @RequestParam("spouseWorkUnit") String spouseWorkUnit,
-                           @RequestParam("spousePostsHeld") String spousePostsHeld,
-                           @RequestParam("twoStaffCode") String twoStaffCode,
-                           @RequestParam("spouseIdCardNo") String spouseIdCardNo,
-                           @RequestParam("spouseAreaOfStructure") String spouseAreaOfStructure,
-                           @RequestParam("spouseStatus") String spouseStatus,
-                           @RequestParam("spouseHousingMonetizationSubsidies") String spouseHousingMonetizationSubsidies,
-                           @RequestParam("spouseAddress") String spouseAddress,
-                           @RequestParam("result") int result,
-                           @RequestParam("approvalOpinion") String approvalOpinion,
-                           @RequestParam("approvalTime") String approvalTime,
-                           @RequestParam("approvalPerson") String approvalPerson,
-                           @RequestParam("awardGrade") String awardGrade,
-                           @RequestParam("returnedOverseas") String returnedOverseas,
-                           @RequestParam("depedndentOfMartyrs") String depedndentOfMartyrs,
-                           @RequestParam("onlyChild") String onlyChild,
-                           @RequestParam("dualEmployeeSpouse") String dualEmployeeSpouse,
-                           @RequestParam("unit") String unit
+                              @RequestParam("sex") String sex,
+                              @RequestParam("staffCode") String staffCode,
+                              @RequestParam("birthdate") String birthdate,
+                              @RequestParam("postsHeld") String postsHeld,
+                              @RequestParam("timeInJob") String timeInJob,
+                              @RequestParam("appointmentTime") String  appointmentTime,
+                              @RequestParam("startingDates") String startingDates,
+                              @RequestParam("timeToWork") String timeToWork,
+                              @RequestParam("timeToSchool") String timeToSchool,
+                              @RequestParam("officialAcademicCredentials") String officialAcademicCredentials,
+                              @RequestParam("marriage") String marriage,
+                              @RequestParam("linkNum") String linkNum,
+                              @RequestParam("idCardNo") String idCardNo,
+                              @RequestParam("areaOfStructureNow") String areaOfStructureNow,
+                              @RequestParam("statusNow") String statusNow,
+                              @RequestParam("addressNow") String addressNow,
+                              @RequestParam("type") String type,
+                              @RequestParam("spouseName") String spouseName,
+                              @RequestParam("spouseBirthdate") String spouseBirthdate,
+                              @RequestParam("spouseWorkUnit") String spouseWorkUnit,
+                              @RequestParam("spousePostsHeld") String spousePostsHeld,
+                              @RequestParam("twoStaffCode") String twoStaffCode,
+                              @RequestParam("spouseIdCardNo") String spouseIdCardNo,
+                              @RequestParam("spouseAreaOfStructure") String spouseAreaOfStructure,
+                              @RequestParam("spouseStatus") String spouseStatus,
+                              @RequestParam("spouseHousingMonetizationSubsidies") String spouseHousingMonetizationSubsidies,
+                              @RequestParam("spouseAddress") String spouseAddress,
+                              @RequestParam("result") int result,
+                              @RequestParam("approvalOpinion") String approvalOpinion,
+                              @RequestParam("approvalTime") String approvalTime,
+                              @RequestParam("approvalPerson") String approvalPerson,
+                              @RequestParam("awardGrade") String awardGrade,
+                              @RequestParam("returnedOverseas") String returnedOverseas,
+                              @RequestParam("depedndentOfMartyrs") String depedndentOfMartyrs,
+                              @RequestParam("onlyChild") String onlyChild,
+                              @RequestParam("dualEmployeeSpouse") String dualEmployeeSpouse,
+                              @RequestParam("unit") String unit,
+                              @RequestParam("tag") int tag
     )  {
 
         try {
@@ -224,7 +225,7 @@ public class ApplyController {
             apply.setApprovalPerson(approvalPerson);
             apply.setResult(result);
             apply.setApprovalOpinion(approvalOpinion);
-            apply.setAppointmentTime(simpleDateFormat.parse(approvalTime));
+            apply.setApprovalTime(simpleDateFormat.parse(approvalTime));
             apply.setApprovalPerson(approvalPerson);
             apply.setAwardGrade(awardGrade);
             apply.setReturnedOverseas(returnedOverseas);
@@ -232,7 +233,7 @@ public class ApplyController {
             apply.setOnlyChild(onlyChild);
             apply.setDualEmployeeSpouse(dualEmployeeSpouse);
             apply.setUnit(unit);
-            apply.setTag(1);
+            apply.setTag(tag);
             applyService.updateApply(apply);
             return HouseUtil.getJSONString(0,"修改申请成功");
         }catch (Exception e){
