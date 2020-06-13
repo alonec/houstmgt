@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HistoryController {
     @Autowired
@@ -66,6 +69,25 @@ public class HistoryController {
             return  messageDTO;
         }catch (Exception e ){
             logger.error("拉取历史信息失败"+e.getMessage());
+            return null;
+        }
+    }
+
+    //根据小区编号 楼宇编号  单元编号 房屋编号查询历史变更记录
+    @RequestMapping(path = {"/findHistory/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<History> getHistory(@RequestParam("doorNumber") String doorNumber,
+                             @RequestParam("buildingNumber") String buildingNumber,
+                             @RequestParam("elementnumber") String elementnumber,
+                             @RequestParam("housenumber") String housenumber
+    )  {
+
+        try {
+            List<History> list = new ArrayList<History>();
+            list = historyService.findHistory(doorNumber, buildingNumber, elementnumber,  housenumber);
+            return list;
+        }catch (Exception e){
+            logger.error("历史记录查询成功失败！！！"+e.getMessage());
             return null;
         }
     }

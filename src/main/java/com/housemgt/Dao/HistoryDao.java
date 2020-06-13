@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -36,5 +37,8 @@ public interface HistoryDao {
             "er} "})
     void updateMessage(History history);
 
+    //根据小区编号 楼宇编号  单元编号 房屋编号查询历史变更记录
+    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where doorNumber=#{arg0} and buildingNumber=#{arg1} and elementnumber=#{arg2} and housenumber=#{arg3}"})
+    List<History> findHistory(String doorNumber,String buildingNumber,String elementnumber,String housenumber);
 
 }

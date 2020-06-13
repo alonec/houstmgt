@@ -1,13 +1,10 @@
 package com.housemgt.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 
 public class HouseUtil {
-    private static final Logger logger = LoggerFactory.getLogger(HouseUtil.class);
+    //private static final Logger logger = LoggerFactory.getLogger(HouseUtil.class);
 
     //页面返回信息转换成Json格式
     public static String getJSONString(int code) {

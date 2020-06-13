@@ -155,6 +155,7 @@ public class ApplyController {
                            @RequestParam("birthdate") String birthdate,
                            @RequestParam("postsHeld") String postsHeld,
                            @RequestParam("timeInJob") String timeInJob,
+                           @RequestParam("appointmentTime") String  appointmentTime,
                            @RequestParam("startingDates") String startingDates,
                            @RequestParam("timeToWork") String timeToWork,
                            @RequestParam("timeToSchool") String timeToSchool,
@@ -198,7 +199,7 @@ public class ApplyController {
             apply.setStaffCode(staffCode);
             apply.setPostsHeld(postsHeld);
             apply.setTimeInJob(simpleDateFormat.parse(timeInJob));
-            apply.setAppointmentTime(simpleDateFormat.parse(approvalTime));
+            apply.setAppointmentTime(simpleDateFormat.parse(appointmentTime));
             apply.setStartingDates(simpleDateFormat.parse(startingDates));
             apply.setTimeToWork(simpleDateFormat.parse(timeToWork));
             apply.setTimeToSchool(simpleDateFormat.parse(timeToSchool));
@@ -223,13 +224,15 @@ public class ApplyController {
             apply.setApprovalPerson(approvalPerson);
             apply.setResult(result);
             apply.setApprovalOpinion(approvalOpinion);
-            apply.setApprovalTime(simpleDateFormat.parse(approvalTime));
+            apply.setAppointmentTime(simpleDateFormat.parse(approvalTime));
             apply.setApprovalPerson(approvalPerson);
+            apply.setAwardGrade(awardGrade);
             apply.setReturnedOverseas(returnedOverseas);
             apply.setDepedndentOfMartyrs(depedndentOfMartyrs);
             apply.setOnlyChild(onlyChild);
             apply.setDualEmployeeSpouse(dualEmployeeSpouse);
             apply.setUnit(unit);
+            apply.setTag(1);
             applyService.updateApply(apply);
             return HouseUtil.getJSONString(0,"修改申请成功");
         }catch (Exception e){
@@ -242,12 +245,14 @@ public class ApplyController {
     //提交申请操作
     @RequestMapping(path = {"/addApply/"} , method = { RequestMethod.POST})
     @ResponseBody
-    public String addApply(@RequestParam("name") String name,
+    public String addApply(
+                           @RequestParam("name") String name,
                            @RequestParam("sex") String sex,
                            @RequestParam("staffCode") String staffCode,
                            @RequestParam("birthdate") String birthdate,
                            @RequestParam("postsHeld") String postsHeld,
                            @RequestParam("timeInJob") String timeInJob,
+                           @RequestParam("appointmentTime") String  appointmentTime,
                            @RequestParam("startingDates") String startingDates,
                            @RequestParam("timeToWork") String timeToWork,
                            @RequestParam("timeToSchool") String timeToSchool,
@@ -278,7 +283,8 @@ public class ApplyController {
                            @RequestParam("depedndentOfMartyrs") String depedndentOfMartyrs,
                            @RequestParam("onlyChild") String onlyChild,
                            @RequestParam("dualEmployeeSpouse") String dualEmployeeSpouse,
-                           @RequestParam("unit") String unit
+                           @RequestParam("unit") String unit,
+                           @RequestParam("tag") int tag
     )  {
 
         try {
@@ -291,7 +297,7 @@ public class ApplyController {
             apply.setStaffCode(staffCode);
             apply.setPostsHeld(postsHeld);
             apply.setTimeInJob(simpleDateFormat.parse(timeInJob));
-            apply.setAppointmentTime(simpleDateFormat.parse(approvalTime));
+            apply.setAppointmentTime(simpleDateFormat.parse(appointmentTime));
             apply.setStartingDates(simpleDateFormat.parse(startingDates));
             apply.setTimeToWork(simpleDateFormat.parse(timeToWork));
             apply.setTimeToSchool(simpleDateFormat.parse(timeToSchool));
@@ -318,11 +324,13 @@ public class ApplyController {
             apply.setApprovalOpinion(approvalOpinion);
             apply.setApprovalTime(simpleDateFormat.parse(approvalTime));
             apply.setApprovalPerson(approvalPerson);
+            apply.setAwardGrade(awardGrade);
             apply.setReturnedOverseas(returnedOverseas);
             apply.setDepedndentOfMartyrs(depedndentOfMartyrs);
             apply.setOnlyChild(onlyChild);
             apply.setDualEmployeeSpouse(dualEmployeeSpouse);
             apply.setUnit(unit);
+            apply.setTag(tag);
             applyService.addApply(apply);
             return HouseUtil.getJSONString(0,"增加申请成功");
         }catch (Exception e){
@@ -384,7 +392,7 @@ public class ApplyController {
     }
 
     //查询常规未审核
-    @RequestMapping(path = {"/getNoApplyNowF/"} , method = { RequestMethod.GET})
+    @RequestMapping(path = {"/getNoApplyF/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<ApplyPart> getNoApplyF()  {
 
@@ -413,7 +421,7 @@ public class ApplyController {
     }
 
     //查询即时未审核
-    @RequestMapping(path = {"/getNoApplyF/"} , method = { RequestMethod.GET})
+    @RequestMapping(path = {"/getNoApplyNowF/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<ApplyPart> getNoApplyNowF()  {
 

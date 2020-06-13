@@ -19,8 +19,6 @@ public class ActivityController {
     @Autowired
     ActivityService activityService;
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
     @RequestMapping(path = {"/getStatus/"} , method = { RequestMethod.GET})
     @ResponseBody
     public int getStatus(//@RequestParam("name") String   name,

@@ -5,6 +5,7 @@ package com.housemgt;
 import com.housemgt.Dao.ApplyHouseDao;
 import com.housemgt.model.Apply;
 import com.housemgt.model.ApplyPart;
+import com.housemgt.service.ApplyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,48 +22,53 @@ public class ApplyTest {
 
     @Autowired
     ApplyHouseDao applyHouseDao;
+
+    @Autowired
+    ApplyService a;
     @Test
     public void contextLoads() {
-//        Apply apply = new Apply();
-//        apply.setName("徐文涛");
-//        apply.setSex("男");
-//        apply.setBirthdate(new Date());
-//        apply.setStaffCode("16407010224");
-//        apply.setPostsHeld("教授");
-//        apply.setTimeInJob(new Date());
-//        apply.setAppointmentTime(new Date());
-//        apply.setStartingDates(new Date());
-//        apply.setTimeToWork(new Date());
-//        apply.setTimeToSchool(new Date());
-//        apply.setOfficialAcademicCredentials("博士");
-//        apply.setMarriage("未婚");
-//        apply.setLinkNum("110");
-//        apply.setIdCardNo("610***********");
-//        apply.setAreaOfStructureNow("00");
-//        apply.setStatusNow("租房");
-//        apply.setType("新建房");
-//        apply.setSpouseName("侯祥");
-//        apply.setSpouseBirthdate(new Date());
-//        apply.setSpouseWorkUnit("西安科技大学");
-//        apply.setSpousePostsHeld("教授儿子");
-//        apply.setTwoStaffCode("16******");
-//        apply.setAddressNow("西安科技大学");
-//        apply.setSpouseIdCardNo("610******");
-//        apply.setSpouseAreaOfStructure("999");
-//        apply.setSpouseStatus("租房");
-//        apply.setSpouseHousingMonetizationSubsidies("999");
-//        apply.setSpouseAddress("瓦国");
-//        apply.setApprovalPerson("梁晨");
-//        apply.setResult(0);
-//        apply.setApprovalOpinion("tongguo");
-//        apply.setApprovalTime(new Date());
-//        apply.setApprovalPerson("1");
-//        apply.setReturnedOverseas("1");
-//        apply.setDepedndentOfMartyrs("1");
-//        apply.setOnlyChild("0");
-//        apply.setDualEmployeeSpouse("0");
-//        apply.setUnit("通信学院");
-//        applyHouseDao.addApply(apply);
+        Apply apply = new Apply();
+        apply.setName("鲁彪banzi");
+        apply.setSex("男");
+        apply.setBirthdate(new Date());
+        apply.setStaffCode("16407010224");
+        apply.setPostsHeld("教授");
+        apply.setTimeInJob(new Date());
+        apply.setAppointmentTime(new Date());
+        apply.setStartingDates(new Date());
+        apply.setTimeToWork(new Date());
+        apply.setTimeToSchool(new Date());
+        apply.setOfficialAcademicCredentials("博士");
+        apply.setMarriage("未婚");
+        apply.setLinkNum("110");
+        apply.setIdCardNo("610***********");
+        apply.setAreaOfStructureNow("00");
+        apply.setStatusNow("租房");
+        apply.setType("新建房");
+        apply.setSpouseName("侯祥");
+        apply.setSpouseBirthdate(new Date());
+        apply.setSpouseWorkUnit("西安科技大学");
+        apply.setSpousePostsHeld("教授儿子");
+        apply.setTwoStaffCode("16******");
+        apply.setAddressNow("西安科技大学");
+        apply.setSpouseIdCardNo("610******");
+        apply.setSpouseAreaOfStructure("999");
+        apply.setSpouseStatus("租房");
+        apply.setSpouseHousingMonetizationSubsidies("999");
+        apply.setSpouseAddress("瓦国");
+        apply.setApprovalPerson("梁晨");
+        apply.setResult(0);
+        apply.setApprovalOpinion("tongguo");
+        apply.setApprovalTime(new Date());
+        apply.setApprovalPerson("1");
+        apply.setReturnedOverseas("1");
+        apply.setDepedndentOfMartyrs("1");
+        apply.setOnlyChild("0");
+        apply.setDualEmployeeSpouse("0");
+        apply.setUnit("通信学院");
+        apply.setTag(1);
+       // applyHouseDao.addApply(apply);
+        a.addApply(apply);
 //
 ////        List<Apply> list = new ArrayList<>();
 ////        list = applyHouseDao.getResultApply(0);
@@ -115,10 +121,10 @@ public class ApplyTest {
 ////        applyHouseDao.updateApply(apply1);
 //       // applyHouseDao.deleteSelfApply("张欣","16407010223");
 //       applyHouseDao.updateApplyResult("11111","1",0,"99999999",new Date(),"99999999");
-        List<ApplyPart> list = new ArrayList<ApplyPart>();
-        list = applyHouseDao.getYesApplyF();
-        for (int i = 0; i <list.size() ; i++) {
-            System.out.println(list.get(i).getApprovalTime());
-        }
+//        List<ApplyPart> list = new ArrayList<ApplyPart>();
+//        list = applyHouseDao.getYesApplyF();
+//        for (int i = 0; i <list.size() ; i++) {
+//            System.out.println(list.get(i).getApprovalTime());
+//        }
     }
 }

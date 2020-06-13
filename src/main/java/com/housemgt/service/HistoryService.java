@@ -8,6 +8,8 @@ import com.housemgt.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HistoryService {
 
@@ -33,8 +35,15 @@ public class HistoryService {
         return messageDTO;
     }
 
+
+
     //编辑房屋历史修改信息
     public void updateMessage(History history){
         historyDao.updateMessage(history);
+    }
+
+    //根据小区编号 楼宇编号  单元编号 房屋编号查询历史变更记录
+    public List<History> findHistory(String doorNumber,String buildingNumber,String elementnumber,String housenumber){
+        return historyDao.findHistory(doorNumber, buildingNumber, elementnumber, housenumber);
     }
 }
