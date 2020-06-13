@@ -2,8 +2,10 @@ package com.housemgt.Dao;
 
 
 import com.housemgt.model.Apply;
+import com.housemgt.model.ApplyPart;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -33,8 +35,11 @@ public interface ApplyHouseDao {
             "Dates},#{timeToWork},#{timeToSchool},#{officialAcademicCredentials},#{marriage},#{linkNum},#{idCardNo},#{ar" +
             "eaOfStructureNow},#{statusNow},#{addressNow},#{type},#{spouseName},#{spouseBirthdate},#{spouseWorkUnit},#{s" +
             "pousePostsHeld},#{twoStaffCode},#{spouseIdCardNo},#{spouseAreaOfStructure},#{spouseStatus},#{spouseHousingM" +
-            "onetizationSubsidies},#{spouseAddress},#{result},#{approvalOpinion},#{approvalTime},#{approvalPerson},#{awa" +
+            "onetizationSubsidies},#{spouseAddress},3,#{approvalOpinion},#{approvalTime},#{approvalPerson},#{awa" +
             "rdGrade},#{returnedOverseas},#{depedndentOfMartyrs},#{onlyChild},#{dualEmployeeSpouse},#{unit},#{tag})";
+    String INSET_FIELDS1 = "name,staffCode";
+
+
     //提交申请操作
     @Insert({"insert into",TABLE_NAME,"(",INSET_FIELDS,") values",IN_NAME })
     void addApply(Apply apply);
@@ -86,5 +91,28 @@ public interface ApplyHouseDao {
     //更新审核状态
     @Update({"update",TABLE_NAME,"set result =#{arg2},approvalOpinion=#{arg3},approvalTime=#{arg4},approvalPerson=#{arg5} where name=#{arg0} and staffCode=#{arg1}"})
     void updateApplyResult(String name, String staffCode, int result, String approvalOpinion, Date approvalTime, String approvalPerson);
+
+
+    //查看详情页
+    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where name= #{arg0} and staffCode=#{arg1}"})
+    List<Apply> getYesApplyByName(String name,String  staffCode);
+
+
+    //查询已审核常规的
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," where result  <2 and tag=1"})
+    List<ApplyPart> getYesApplyF();
+
+    //查询未审核常规
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result  =3 and tag=1"})
+    List<ApplyPart> getNoApplyF();
+    //查询已审核即时的
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," where result  <2 and tag=0"})
+    List<ApplyPart> getYesApplyNowF();
+
+    //查询未审核即时
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result =3 and tag=0"})
+    List<ApplyPart> getNoApplyNowF();
+
+
 }
 

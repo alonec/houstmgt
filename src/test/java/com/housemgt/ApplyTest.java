@@ -4,6 +4,7 @@ package com.housemgt;
 
 import com.housemgt.Dao.ApplyHouseDao;
 import com.housemgt.model.Apply;
+import com.housemgt.model.ApplyPart;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,49 +76,49 @@ public class ApplyTest {
 //
 //
 //
-        Apply apply1 = new Apply();
-        apply1.setName("周洁肤");
-        apply1.setSex("man");
-        apply1.setBirthdate(new Date());
-        apply1.setStaffCode("16407010230");
-        apply1.setPostsHeld("教授");
-        apply1.setTimeInJob(new Date());
-        apply1.setAppointmentTime(new Date());
-        apply1.setStartingDates(new Date());
-        apply1.setTimeToWork(new Date());
-        apply1.setTimeToSchool(new Date());
-        apply1.setOfficialAcademicCredentials("博士");
-        apply1.setMarriage("未婚");
-        apply1.setLinkNum("110");
-        apply1.setIdCardNo("610***********");
-        apply1.setAreaOfStructureNow("32.89");
-        apply1.setStatusNow("租房");
-        apply1.setType("新建房");
-        apply1.setSpouseName("臭妹妹");
-        apply1.setSpouseBirthdate(new Date());
-        apply1.setSpouseWorkUnit("西安石油大学");
-        apply1.setSpousePostsHeld("臭板子");
-        apply1.setTwoStaffCode("16******");
-        apply1.setAddressNow("西安科技大学");
-        apply1.setSpouseIdCardNo("610******");
-        apply1.setSpouseAreaOfStructure("90.90");
-        apply1.setSpouseStatus("租房");
-        apply1.setSpouseHousingMonetizationSubsidies("900000.00");
-        apply1.setSpouseAddress("瓦国");
-        apply1.setApprovalPerson("梁晨");
-        apply1.setResult(2);
-        apply1.setApprovalOpinion("");
-        apply1.setApprovalTime(new Date());
-        apply1.setUnit("");
-        apply1.setTag(0);
-        applyHouseDao.addApply(apply1);
+//        Apply apply1 = new Apply();
+//        apply1.setName("陈鑫");
+//        apply1.setSex("man");
+//        apply1.setBirthdate(new Date());
+//        apply1.setStaffCode("16407010230");
+//        apply1.setPostsHeld("教授");
+//        apply1.setTimeInJob(new Date());
+//        apply1.setAppointmentTime(new Date());
+//        apply1.setStartingDates(new Date());
+//        apply1.setTimeToWork(new Date());
+//        apply1.setTimeToSchool(new Date());
+//        apply1.setOfficialAcademicCredentials("博士");
+//        apply1.setMarriage("未婚");
+//        apply1.setLinkNum("110");
+//        apply1.setIdCardNo("610***********");
+//        apply1.setAreaOfStructureNow("32.89");
+//        apply1.setStatusNow("租房");
+//        apply1.setType("新建房");
+//        apply1.setSpouseName("臭妹妹");
+//        apply1.setSpouseBirthdate(new Date());
+//        apply1.setSpouseWorkUnit("西安石油大学");
+//        apply1.setSpousePostsHeld("臭板子");
+//        apply1.setTwoStaffCode("16******");
+//        apply1.setAddressNow("西安科技大学");
+//        apply1.setSpouseIdCardNo("610******");
+//        apply1.setSpouseAreaOfStructure("90.90");
+//        apply1.setSpouseStatus("租房");
+//        apply1.setSpouseHousingMonetizationSubsidies("900000.00");
+//        apply1.setSpouseAddress("瓦国");
+//        apply1.setApprovalPerson("梁晨");
+//        //apply1.setResult(2);
+//        apply1.setApprovalOpinion("");
+//        apply1.setApprovalTime(new Date());
+//        apply1.setUnit("");
+//        apply1.setTag(0);
+//        applyHouseDao.addApply(apply1);
 ////        applyHouseDao.updateApply(apply1);
 //       // applyHouseDao.deleteSelfApply("张欣","16407010223");
 //       applyHouseDao.updateApplyResult("11111","1",0,"99999999",new Date(),"99999999");
-        List<Apply> list = new ArrayList<Apply>();
-        list = applyHouseDao.getNoApplyNow();
+        List<ApplyPart> list = new ArrayList<ApplyPart>();
+        list = applyHouseDao.getYesApplyF();
         for (int i = 0; i <list.size() ; i++) {
-            System.out.println(list.get(i).getName());
+            System.out.println(list.get(i).getApprovalTime());
         }
     }
 }
