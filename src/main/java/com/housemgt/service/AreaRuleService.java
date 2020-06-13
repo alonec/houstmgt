@@ -1,11 +1,12 @@
 package com.housemgt.service;
 
 import com.housemgt.model.AreaRule;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /***
- * 元数据配置业务层接口
+ * 面积规则配置业务层接口
  * @author chenxin
  */
 public interface AreaRuleService {
@@ -33,5 +34,6 @@ public interface AreaRuleService {
     /**
      * 根据系列id查询面积规则配置
      */
-    List<AreaRule> selectBySerealId(Integer serealId, Integer pageNumber, Integer pageSize);
+    List<AreaRule> selectBySerealId(Integer serealId, @Param("pageNumber") Integer pageNumber
+            , @Param("pageSize") Integer pageSize);
 }

@@ -109,10 +109,10 @@ public class LevelPeopelController {
     @ResponseBody
     @RequestMapping(value = "/rule/level/selectByBizSerealPeople")
     public Object selectByBizSerealPeople(@RequestParam("bizType") Integer bizType,
-                                          @RequestParam("serealId") Integer serealId,
-                                          @RequestParam("levelPeople") String levelPeople,
-                                          @RequestParam("pageNumber") Integer pageNumber,
-                                          @RequestParam("pageSize") Integer pageSize) {
+                                          @RequestParam(value = "serealId", defaultValue = "0") Integer serealId,
+                                          @RequestParam(value = "levelPeople", defaultValue = "") String levelPeople,
+                                          @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+                                          @RequestParam(value = "pageSize", defaultValue = "100") Integer pageSize) {
         ResultMsg resultMsg = null;
         try {
             PageDTO pageDTO = new PageDTO();

@@ -57,7 +57,7 @@ public class LevelPeopleServiceImpl implements LevelPeopleService {
 
     @Override
     public List<LevelPeople> selectBySerealIdAndLevelName(Integer serealId, String levelName) {
-        if (serealId < 0 && levelName == null && levelName.equals("")){
+        if (serealId < 0 || levelName != null || levelName.equals("")){
             return null;
         }
         return levelPeopleMapper.selectBySerealIdAndLevelName(serealId, levelName);
@@ -66,8 +66,14 @@ public class LevelPeopleServiceImpl implements LevelPeopleService {
     @Override
     public List<LevelPeople> selectByBizSerealPeople(Integer bizType, Integer serealId, String levelPeople
             , Integer pageNumber, Integer pageSize) {
+        if(bizType == 0){
+            bizType = null;
+        }
         if(serealId == 0){
-            return null;
+            serealId = null;
+        }
+        if(levelPeople != null && levelPeople.equals("")){
+            levelPeople = null;
         }
         PageHelper.startPage(pageNumber, pageSize);
         return levelPeopleMapper.selectByBizSerealPeople(bizType, serealId, levelPeople);

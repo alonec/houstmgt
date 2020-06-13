@@ -4,6 +4,10 @@ import com.housemgt.model.AreaRule;
 
 import java.util.List;
 
+/***
+ * 面积规则配置业务层接口
+ * @author chenxin
+ */
 public interface AreaRuleMapper {
 
 
@@ -37,6 +41,5 @@ public interface AreaRuleMapper {
      * 根据系列id查询面积规则配置总数
      */
     int countBySerealId(Integer serealId);
-
 
 }

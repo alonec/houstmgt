@@ -35,11 +35,39 @@
     award_grade, depedndent_of_martyrs_grade, returned_overseas_grade, only_child_grade, 
     dual_employee_spouse_grade, total_grade, show_times
   </sql>
+  <sql id="Where_Sql">
+    <where>
+      <if test="entry.staffCode != null" >
+        AND staff_code = #{entry.staffCode,jdbcType=VARCHAR}
+      </if>
+      <if test="entry.staffName != null" >
+        AND staff_name = #{entry.staffName,jdbcType=VARCHAR}
+      </if>
+      <if test="entry.college != null" >
+        AND college = #{entry.college,jdbcType=VARCHAR}
+      </if>
+      <if test="entry.showTimes != null" >
+        AND show_times = #{entry.showTimes,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_count_result
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="select" resultMap="BaseResultMap" parameterType="java.util.Map" >
+  select
+  <include refid="Base_Column_List" />
+  from t_count_result
+  <include refid="Where_Sql"/> order by total_grade, birthday
+</select>
+  <select id="count" resultType="int">
+    select
+    count(*)
+    from t_count_result
+    <include refid="Where_Sql"/>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_count_result

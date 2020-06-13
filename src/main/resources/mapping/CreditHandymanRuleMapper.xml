@@ -37,7 +37,7 @@
     insert into t_credit_handyman_rule (id, sereal_id, base_grade, 
       grade, level_people, level_people_id
       )
-    values (#{id,jdbcType=INTEGER}, #{serealId,jdbcType=INTEGER}, #{baseGrade,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{serealId,jdbcType=INTEGER}, #{baseGrade,jdbcType=VARCHAR},
       #{grade,jdbcType=VARCHAR}, #{levelPeople,jdbcType=VARCHAR}, #{levelPeopleId,jdbcType=INTEGER}
       )
   </insert>

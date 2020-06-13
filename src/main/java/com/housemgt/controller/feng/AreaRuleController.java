@@ -19,7 +19,7 @@ import java.util.List;
 
 /***
  * 面积规则
- * @author chenxin
+ * @author alone
  */
 @Controller
 public class AreaRuleController {
@@ -28,11 +28,11 @@ public class AreaRuleController {
     private AreaRuleService areaRuleService;
 
     @Autowired
-    private MetaDataService metaDataService;
-
-    @Autowired
     private LevelPeopleService levelPeopleService;
 
+    /**
+     * 添加面积规则配置
+     */
     @ResponseBody
     @RequestMapping(value = "/rule/area/add")
     public Object add(@RequestParam("serealId") Integer serealId,

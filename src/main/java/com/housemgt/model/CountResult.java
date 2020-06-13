@@ -5,53 +5,53 @@ import java.util.Date;
 public class CountResult {
     private Integer id;
 
-    private String staffCode;
+    private String staffCode; // 员工代码
 
-    private String staffName;
+    private String staffName; // 员工姓名
 
-    private String college;
+    private String college; // 单位
 
-    private String highestDegree;
+    private String highestDegree; // 最高学历
 
-    private String job;
+    private String job; // 职称
 
-    private String sex;
+    private String sex; // 性别
 
-    private Date birthday;
+    private Date birthday; // 生日
 
-    private Date fullTimeCollegeTime;
+    private Date fullTimeCollegeTime; // 全日制大中专上学时间
 
-    private Date startWorkTime;
+    private Date startWorkTime; // 参加工作时间
 
-    private Date schoolWorkTime;
+    private Date schoolWorkTime; // 到校工作时间
 
-    private String jobBaseGrade;
+    private String jobBaseGrade; // 职务职称基础分
 
-    private Date timeInJob;
+    private Date timeInJob; // 职务职称任职时间
 
-    private String timeInJobCount;
+    private String timeInJobCount; // 职称任职年限
 
-    private String timeInJobCountGrade;
+    private String timeInJobCountGrade; // 职称任职年限分
 
-    private Date doctoralDegreeGetTime;
+    private Date doctoralDegreeGetTime; // 博士学历学位获得时间 .....不取
 
-    private String lengthOfServiceGrade;
+    private String lengthOfServiceGrade; // 分房工龄分
 
-    private String ageDivisionGrade;
+    private String ageDivisionGrade; // 校龄分
 
-    private String awardGrade;
+    private String awardGrade; // 奖励分
 
-    private String depedndentOfMartyrsGrade;
+    private String depedndentOfMartyrsGrade; // 配偶烈属分
 
-    private String returnedOverseasGrade;
+    private String returnedOverseasGrade; // 归侨分
 
-    private String onlyChildGrade;
+    private String onlyChildGrade; // 独生子女分
 
-    private String dualEmployeeSpouseGrade;
+    private String dualEmployeeSpouseGrade; // 双职工配偶分
 
-    private String totalGrade;
+    private String totalGrade; // 综合积分
 
-    private Integer showTimes;
+    private Integer showTimes; // 公示次数
 
     public Integer getId() {
         return id;

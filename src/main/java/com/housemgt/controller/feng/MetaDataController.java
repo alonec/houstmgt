@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Iterator;
 import java.util.List;
 
 /***
@@ -32,7 +33,7 @@ public class MetaDataController {
 
         // 查询到业务名称
         List<MetaData> metaData1 = metaDataService.selectByBizType(bizType);
-        if (metaData1 != null) {
+        if (metaData1 != null && metaData1.size() > 0) {
             metaData.setBizName(metaData1.get(0).getBizName());
         }
         ResultMsg resultMsg = null;
@@ -120,6 +121,32 @@ public class MetaDataController {
         try {
             List<MetaData> dataList = metaDataService.selectBizType();
             if (dataList != null && dataList.size() > 0){
+                resultMsg = ResultMsg.success(dataList);
+            } else {
+                resultMsg = ResultMsg.success();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("查询失败");
+            resultMsg = ResultMsg.error(CodeMsg.ERROR);
+        }
+        return resultMsg;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/rule/meta/selectByBizType")
+    public Object selectByBizType(@RequestParam("bizType") String bizType) {
+        ResultMsg resultMsg = null;
+        try {
+            List<MetaData> dataList = metaDataService.selectAll();
+            if (dataList != null && dataList.size() > 0){
+                Iterator<MetaData> iterator = dataList.iterator();
+                while (iterator.hasNext()){
+                    MetaData metaData = iterator.next();
+                    if (metaData.getBizType().equals(bizType)) {
+                        iterator.remove();
+                    }
+                }
                 resultMsg = ResultMsg.success(dataList);
             } else {
                 resultMsg = ResultMsg.success();
