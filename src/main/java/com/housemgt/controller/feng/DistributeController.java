@@ -93,18 +93,18 @@ public class DistributeController {
 
     @ResponseBody
     @RequestMapping("/distribute/select")
-    public Object select(@RequestParam("staffCode") String staffCode,
-                           @RequestParam("staffName") String staffName,
-                           @RequestParam("college") String college,
-                           @RequestParam("pageNumber") Integer pageNumber,
-                           @RequestParam("pageSize") Integer pageSize) {
+    public Object select(@RequestParam(value = "staffCode", defaultValue = "") String staffCode,
+                           @RequestParam(value = "staffName", defaultValue = "") String staffName,
+                           @RequestParam(value = "college", defaultValue = "") String college,
+                           @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+                           @RequestParam(value = "pageSize", defaultValue = "500") Integer pageSize) {
         ResultMsg resultMsg = null;
 
         try {
             Map entry = new HashMap(4);
-            entry.put("staffCode", staffCode);
-            entry.put("staffName", staffName);
-            entry.put("college", college);
+            entry.put("staffCode", "".equals(staffCode)? null: staffCode);
+            entry.put("staffName", "".equals(staffName)? null: staffName);
+            entry.put("college", "".equals(college)? null: college);
             entry.put("showTimes", "1");
 
             int tatals = countResultService.count(entry);

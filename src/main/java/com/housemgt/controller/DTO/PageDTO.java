@@ -7,16 +7,16 @@ import java.util.List;
  */
 public class PageDTO {
     //总记录数
-    private long totals;
+    private Integer totals;
 
     //结果集
     private List<?> list;
 
-    public long getTotals() {
+    public Integer getTotals() {
         return totals;
     }
 
-    public void setTotals(long totals) {
+    public void setTotals(Integer totals) {
         this.totals = totals;
     }
 

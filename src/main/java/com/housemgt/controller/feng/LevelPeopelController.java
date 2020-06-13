@@ -2,6 +2,7 @@ package com.housemgt.controller.feng;
 
 import com.housemgt.common.msg.CodeMsg;
 import com.housemgt.common.msg.ResultMsg;
+import com.housemgt.controller.DTO.LevelPeopleDo;
 import com.housemgt.controller.DTO.PageDTO;
 import com.housemgt.model.LevelPeople;
 import com.housemgt.model.MetaData;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /***
@@ -33,7 +35,7 @@ public class LevelPeopelController {
     public Object update(@RequestParam("bizType") Integer bizType,
                          @RequestParam("serealId") Integer serealId,
                          @RequestParam("levelName") String levelName,
-                         @RequestParam("levelPeople") String levelPeople) {
+                         @RequestParam("levelPeopleName") String levelPeople) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeopleDO = new LevelPeople();
@@ -44,9 +46,9 @@ public class LevelPeopelController {
             // 根据serearId去查询到serealName
             MetaData metaData = metaDataService.selectBySerealId(serealId);
             if (metaData != null){
-                levelPeopleDO.setSerealId(metaData.getSerealId() );
+                levelPeopleDO.setSerealName(metaData.getSerealName());
             }
-            if (levelPeopleService.updateByPrimaryKeySelective(levelPeopleDO) > 0){
+            if (levelPeopleService.insertSelective(levelPeopleDO) > 0){
                 resultMsg = ResultMsg.success();
             } else {
                 resultMsg = ResultMsg.error(CodeMsg.ERROR);
@@ -64,16 +66,19 @@ public class LevelPeopelController {
     public Object update(@RequestParam("levelPeopleId") Integer levelPeopleId,
                          @RequestParam("bizType") Integer bizType,
                          @RequestParam("serealId") Integer serealId,
-                         @RequestParam("serealName") Integer serealName,
                          @RequestParam("levelName") String levelName,
-                         @RequestParam("levelPeople") String levelPeople) {
+                         @RequestParam("levelPeopleName") String levelPeople) {
         ResultMsg resultMsg = null;
         try {
             LevelPeople levelPeopleDO = new LevelPeople();
             levelPeopleDO.setLevelPeopleId(levelPeopleId);
             levelPeopleDO.setBizType(bizType);
             levelPeopleDO.setSerealId(serealId);
-            levelPeopleDO.setSerealId(serealName);
+            // 根据serearId去查询到serealName
+            MetaData metaData = metaDataService.selectBySerealId(serealId);
+            if (metaData != null){
+                levelPeopleDO.setSerealName(metaData.getSerealName());
+            }
             levelPeopleDO.setLevelName(levelName);
             levelPeopleDO.setLevelPeople(levelPeople);
 
@@ -108,20 +113,38 @@ public class LevelPeopelController {
 
     @ResponseBody
     @RequestMapping(value = "/rule/level/selectByBizSerealPeople")
-    public Object selectByBizSerealPeople(@RequestParam("bizType") Integer bizType,
+    public Object selectByBizSerealPeople(@RequestParam(value = "bizType", defaultValue = "0") Integer bizType,
                                           @RequestParam(value = "serealId", defaultValue = "0") Integer serealId,
                                           @RequestParam(value = "levelPeople", defaultValue = "") String levelPeople,
                                           @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
-                                          @RequestParam(value = "pageSize", defaultValue = "100") Integer pageSize) {
+                                          @RequestParam(value = "pageSize", defaultValue = "7") Integer pageSize) {
         ResultMsg resultMsg = null;
         try {
             PageDTO pageDTO = new PageDTO();
             int count = levelPeopleService.countByBizSerealPeople(bizType, serealId, levelPeople);
             List<LevelPeople> data = levelPeopleService.selectByBizSerealPeople(bizType, serealId, levelPeople, pageNumber, pageSize);
             if (data != null && data.size() > 0){
+                List<LevelPeopleDo> res = new ArrayList<>(data.size());
+                for (LevelPeople item: data
+                     ) {
+                    LevelPeopleDo levelPeopleDo = new LevelPeopleDo();
+                    if (item.getBizType().equals(1)){
+                        levelPeopleDo.setBizName("面积规则");
+                    } else {
+                        levelPeopleDo.setBizName("计分规则");
+                    }
+                    levelPeopleDo.setBizType(item.getBizType());
+                    levelPeopleDo.setLevelName(item.getLevelName());
+                    levelPeopleDo.setLevelPeople(item.getLevelPeople());
+                    levelPeopleDo.setSerealId(item.getSerealId());
+                    levelPeopleDo.setSerealName(item.getSerealName());
+                    levelPeopleDo.setLevelPeopleId(item.getLevelPeopleId());
+
+                    res.add(levelPeopleDo);
+                }
                 pageDTO.setTotals(count);
-                pageDTO.setList(data);
-                resultMsg = ResultMsg.success(data);
+                pageDTO.setList(res);
+                resultMsg = ResultMsg.success(pageDTO);
             }
         } catch (Exception e){
             e.printStackTrace();

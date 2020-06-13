@@ -135,7 +135,7 @@ public class MetaDataController {
 
     @ResponseBody
     @RequestMapping(value = "/rule/meta/selectByBizType")
-    public Object selectByBizType(@RequestParam("bizType") String bizType) {
+    public Object selectByBizType(@RequestParam("bizType") Integer bizType) {
         ResultMsg resultMsg = null;
         try {
             List<MetaData> dataList = metaDataService.selectAll();
@@ -143,7 +143,7 @@ public class MetaDataController {
                 Iterator<MetaData> iterator = dataList.iterator();
                 while (iterator.hasNext()){
                     MetaData metaData = iterator.next();
-                    if (metaData.getBizType().equals(bizType)) {
+                    if (!metaData.getBizType().equals(bizType)) {
                         iterator.remove();
                     }
                 }

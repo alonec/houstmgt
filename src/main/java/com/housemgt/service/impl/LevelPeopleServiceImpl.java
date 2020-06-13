@@ -81,7 +81,15 @@ public class LevelPeopleServiceImpl implements LevelPeopleService {
 
     @Override
     public int countByBizSerealPeople(Integer bizType, Integer serealId, String levelPeople) {
-
+        if(bizType == 0){
+            bizType = null;
+        }
+        if(serealId == 0){
+            serealId = null;
+        }
+        if(levelPeople != null && levelPeople.equals("")){
+            levelPeople = null;
+        }
         return levelPeopleMapper.countByBizSerealPeople(bizType, serealId, levelPeople);
     }
 
