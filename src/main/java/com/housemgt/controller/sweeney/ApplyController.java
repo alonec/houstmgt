@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;import java.util.List;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ApplyController {
@@ -27,7 +28,7 @@ public class ApplyController {
     ApplyService applyService;
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    //管理员查询所有申请通过操作
+    /**管理员查询所有申请通过操作*/
     @RequestMapping(path = {"/getResultApply/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<Apply> getResultApply(  @RequestParam("result") int  result)  {
@@ -42,7 +43,7 @@ public class ApplyController {
         }
     }
 
-    //查询本人的申请信息
+    /**查询本人的申请信息*/
     @RequestMapping(path = {"/getSelfApply/"} , method = { RequestMethod.GET})
     @ResponseBody
     public List<Apply> getSelfApply(  @RequestParam("name") String   name,
@@ -58,7 +59,7 @@ public class ApplyController {
             return null;
         }
     }
-    //前端分页查询所有常规申请
+    /**前端分页查询所有常规申请*/
     @RequestMapping(path = {"/getAllApply/"} , method = { RequestMethod.GET})
     @ResponseBody
     public MessageDTO getAllApply(@RequestParam("page") int  page)  {

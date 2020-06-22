@@ -16,9 +16,11 @@ public interface CommunityDao {
     @Insert({"insert into",TABLE_NAME,"(",INSET_FIELDS,") values (#{name},#{doorNumber},#{mailingAddress},#{postcode},#{linkman},#{phoneNumber},#{policeStation},#{policeman},#{policePhonenum},#{buildingPicture})" })
     void addCommunity(Community community);
 
-    @Delete({"delete from",TABLE_NAME,"where name=#{name} and doorNumber=#{name} "})
-    void deleteCommunity(@Param("name") String name, @Param("doorNumber") String doorNumber);
+//    @Delete({"delete from",TABLE_NAME,"where name=#{name} and doorNumber=#{doorNumber} "})
+//    void deleteCommunity(@Param("name") String name, @Param("doorNumber") String doorNumber);
 
+    @Delete({"delete from",TABLE_NAME,"where name=#{name} and doorNumber=#{doorNumber} "})
+    void deleteCommunity(@Param("name") String name, @Param("doorNumber") String doorNumber);
     //更新操作
     @Update({"update",TABLE_NAME,"set mailingAddress=#{mailingAddress},postcode=#{postcode},linkman=#{linkman},phoneNumber=#{phoneNumber},policeStation=#{policeStation},policeman=#{policeman},policePhonenum=#{policePhonenum},buildingPicture=#{buildingPicture} where name=#{name} and doorNumber=#{doorNumber}"})
     void updateMessage(Community community);

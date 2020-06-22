@@ -10,7 +10,9 @@ import java.util.List;
 @Mapper
 @Repository
 public interface HistoryDao {
-    String TABLE_NAME = "history";//表名
+    /**表名*/
+    String TABLE_NAME = "history";
+
 
     String INSET_FIELDS = "doorNumber,buildingNumber,elementnumber,housenumber,residentsToChange,infrastructureChanges,s" +
             "tructuremodify,time1,time2,time3";

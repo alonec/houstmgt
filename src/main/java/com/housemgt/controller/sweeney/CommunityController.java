@@ -64,6 +64,7 @@ public class CommunityController {
     )  {
 
         try {
+            System.out.println("name="+name+"doorNum="+doorNumber);
             communityService.deleteCommunity(name,doorNumber);
             return HouseUtil.getJSONString(0,"删除小区成功");
         }catch (Exception e){
