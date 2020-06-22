@@ -24,6 +24,6 @@ import org.springframework.stereotype.Repository;
     void updateStatus(@Param("name") String name,@Param("staffCode") String staffCode,@Param("status") int status);
 
     //查询操作
-    @Select({"select status from",TABLE_NAME,"1 staffCode= #{staffCode}"})
+    @Select({"select status from",TABLE_NAME,"where  staffCode= #{staffCode}"})
     int selectStatus(@Param("staffCode") String staffCode);
 }
