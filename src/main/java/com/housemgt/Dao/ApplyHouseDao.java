@@ -49,8 +49,8 @@ public interface ApplyHouseDao {
     void updateApply(Apply apply);
 
     //撤销个人申请操作
-    @Delete({"delete from",TABLE_NAME,"where name=#{arg0} and staffCode=#{arg1} "})
-    void deleteSelfApply(String name, String staffCode);
+    @Delete({"delete from",TABLE_NAME,"where name=#{name} and staffCode=#{staffCode} "})
+    void deleteSelfApply(@Param("name") String name, @Param("staffCode") String staffCode);
 
 
     //查询所有常规申请
@@ -66,12 +66,12 @@ public interface ApplyHouseDao {
     List<Apply> getAllApplyNow(int page);
 
     //管理员查询所有常规通过操作
-    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result = #{arg0}  "})
-    List<Apply> getResultApply(int result);
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where result = #{result}  "})
+    List<Apply> getResultApply(@Param("result") int result);
 
     //查询本人的申请信息
-    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where name = #{arg0} and staffCode=#{arg1}"})
-    List<Apply> getSelfApply(String name,String staffCode);
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME,"where name = #{name} and staffCode=#{staffCode}"})
+    List<Apply> getSelfApply(@Param("name") String name,@Param("staffCode") String staffCode);
 
     //查询已审核常规的
     @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," where result  >1 and tag=1"})
@@ -89,13 +89,13 @@ public interface ApplyHouseDao {
     List<Apply> getNoApplyNow();
 
     //更新审核状态
-    @Update({"update",TABLE_NAME,"set result =#{arg2},approvalOpinion=#{arg3},approvalTime=#{arg4},approvalPerson=#{arg5} where name=#{arg0} and staffCode=#{arg1}"})
-    void updateApplyResult(String name, String staffCode, int result, String approvalOpinion, Date approvalTime, String approvalPerson);
+    @Update({"update",TABLE_NAME,"set result =#{result},approvalOpinion=#{approvalOpinion},approvalTime=#{approvalTime},approvalPerson=#{approvalPerson} where name=#{name} and staffCode=#{staffCode}"})
+    void updateApplyResult(@Param("name") String name, @Param("staffCode") String staffCode, @Param("result") int result, @Param("approvalOpinion") String approvalOpinion,@Param("approvalTime") Date approvalTime,@Param("approvalPerson") String approvalPerson);
 
 
     //查看详情页
-    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where name= #{arg0} and staffCode=#{arg1}"})
-    List<Apply> getYesApplyByName(String name,String  staffCode);
+    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where name= #{name} and staffCode=#{staffCode}"})
+    List<Apply> getYesApplyByName(@Param("name") String name,@Param("staffCode") String  staffCode);
 
 
     //查询已审核常规的

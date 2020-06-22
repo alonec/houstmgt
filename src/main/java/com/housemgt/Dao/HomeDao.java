@@ -21,12 +21,12 @@ public interface HomeDao {
     void addHome(Home home);
 
     //删除操作
-    @Delete({"delete from",TABLE_NAME,"where elementNumber=#{arg0} and houseNumber=#{arg1} "})
-    void deleteHome(String elementNumber, String houseNumber);
+    @Delete({"delete from",TABLE_NAME,"where elementNumber=#{elementNumber} and houseNumber=#{houseNumber} "})
+    void deleteHome(@Param("elementNumber") String elementNumber, @Param("houseNumber") String houseNumber);
 
     //删除所有房间操作
-    @Delete({"delete from",TABLE_NAME,"where elementNumber=#{arg0}"})
-    void deleteAllHome(String elementNumber);
+    @Delete({"delete from",TABLE_NAME,"where elementNumber=#{elementNumber}"})
+    void deleteAllHome(@Param("elementNumber") String elementNumber);
 
     //更新房屋信息
     @Update({"update",TABLE_NAME,"set houseType=#{houseType},houseArea=#{houseArea},housePicture=#{housePicture},status=" +
@@ -35,22 +35,22 @@ public interface HomeDao {
             "=#{houseNumber}"})
     void updateMessage(Home home);
     //根据房屋状态查看房屋使用情况
-    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where status= #{arg0}"})
-    List<Home> getHomeByStatus(int status);
+    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where status= #{status}"})
+    List<Home> getHomeByStatus(@Param("status") int status);
 
     //查看房屋使用状态
-    @Select({"select",SELECT_HOME,"from",TABLE_NAME,"where elementNumber=#{arg0} and houseNumber=#{arg1}"})
-    String  getStatusByHome(String elementNumber, String houseNumber);
+    @Select({"select",SELECT_HOME,"from",TABLE_NAME,"where elementNumber=#{elementNumber} and houseNumber=#{houseNumber}"})
+    String  getStatusByHome(@Param("elementNumber") String elementNumber, @Param("houseNumber") String houseNumber);
 
     //更新房屋最新的变更记录
-    @Update({"update",TABLE_NAME,"set residentsToChange =#{arg0},infrastructureChanges = #{arg1},structuremodify=#{arg2}" +
-            " where elementNumber=#{arg3} and houseNumber=#{arg4}"})
-    void updateHomeHistory(String residentsToChange, String infrastructureChanges, String structuremodify, String elementNumber, String houseNumber);
+    @Update({"update",TABLE_NAME,"set residentsToChange =#{residentsToChange},infrastructureChanges = #{infrastructureChanges},structuremodify=#{structuremodify}" +
+            " where elementNumber=#{elementNumber} and houseNumber=#{houseNumber}"})
+    void updateHomeHistory(@Param("residentsToChange") String residentsToChange,@Param("infrastructureChanges") String infrastructureChanges, @Param("structuremodify") String structuremodify, @Param("elementNumber") String elementNumber, @Param("houseNumber") String houseNumber);
     // update home set residentsToChange ='1',infrastructureChanges= '2',structuremodify='3'where elementNumber='一单元' and houseNumber='32434';
 
     //更新房屋状态
-    @Update({"update",TABLE_NAME,"set status =#{arg0} where elementNumber=#{arg3} and houseNumber=#{arg4}"})
-    void updateHomeStatus(int status, String elementNumber, String houseNumber);
+    @Update({"update",TABLE_NAME,"set status =#{status} where elementNumber=#{elementNumber} and houseNumber=#{houseNumber}"})
+    void updateHomeStatus(@Param("status") int status, @Param("elementNumber") String elementNumber, @Param("houseNumber") String houseNumber);
 
 }
 

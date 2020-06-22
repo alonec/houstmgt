@@ -1,10 +1,7 @@
 package com.housemgt.Dao;
 
 import com.housemgt.model.History;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +24,8 @@ public interface HistoryDao {
     //分页查询
     @Select({"select count(*) from",TABLE_NAME})
     int getAllHistoryNum();
-    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," limit #{arg0}, 10"})
-    List<History> getAllHistory(int pageRange);
+    @Select({"select ",INSET_FIELDS,"from",TABLE_NAME," limit #{pageRange}, 10"})
+    List<History> getAllHistory(@Param("pageRange") int pageRange);
 
     //编辑房屋历史修改信息
     @Update({"update",TABLE_NAME,"set residentsToChange=#{residentsToChange},infrastructureChanges=#{infrastructureChang" +
@@ -38,7 +35,7 @@ public interface HistoryDao {
     void updateMessage(History history);
 
     //根据小区编号 楼宇编号  单元编号 房屋编号查询历史变更记录
-    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where doorNumber=#{arg0} and buildingNumber=#{arg1} and elementnumber=#{arg2} and housenumber=#{arg3}"})
-    List<History> findHistory(String doorNumber,String buildingNumber,String elementnumber,String housenumber);
+    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where doorNumber=#{doorNumber} and buildingNumber=#{buildingNumber} and elementnumber=#{elementnumber} and housenumber=#{housenumber}"})
+    List<History> findHistory(@Param("doorNumber") String doorNumber,@Param("buildingNumber") String buildingNumber,@Param("elementnumber") String elementnumber,@Param("housenumber") String housenumber);
 
 }

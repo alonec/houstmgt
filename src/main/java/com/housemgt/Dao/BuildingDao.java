@@ -1,10 +1,7 @@
 package com.housemgt.Dao;
 
 import com.housemgt.model.Building;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 //楼宇信息
@@ -26,12 +23,12 @@ public interface BuildingDao {
             ",#{propertyManager})" })
     void addBuilding(Building building);
     //删除楼宇操作
-    @Delete({"delete from",TABLE_NAME,"where buildingNumber=#{arg0} and buildingName=#{arg1} "})
-    void deleteBuilding(String buildingNumber, String buildingName);
+    @Delete({"delete from",TABLE_NAME,"where buildingNumber=#{buildingNumber} and buildingName=#{buildingName} "})
+    void deleteBuilding(@Param("buildingNumber") String buildingNumber, @Param("buildingName") String buildingName);
 
     //删除所有楼宇操作
-    @Delete({"delete from",TABLE_NAME,"where communityName=#{arg0}  "})
-    void deleteAllBuilding(String communityName);
+    @Delete({"delete from",TABLE_NAME,"where communityName=#{communityName}  "})
+    void deleteAllBuilding(@Param("communityName") String communityName);
 
     @Update({"update",TABLE_NAME,"set structureType=#{structureType},mainBody=#{mainBody},coveredArea=#{coveredArea},pri" +
             "ce=#{price},startTime=#{startTime},endTime=#{endTime},projectedArea=#{projectedArea},investmentChannel=#{in" +

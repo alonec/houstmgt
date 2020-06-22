@@ -5,6 +5,7 @@ import com.housemgt.model.Community;
 import com.housemgt.model.Element;
 import com.housemgt.model.Home;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -29,28 +30,28 @@ public interface GetMessageDao {
     String HOME_INSET_FIELDS = "elementNumber,houseNumber,houseType,houseArea,housePicture,status,householderId,residentsToChange,infrastructureChanges,structuremodify";
 
     //根据小区名称查询小区
-    @Select({"select",COMMUNITY_INSET_FIELDS,"from",COMMUNITY_TABLE_NAME,"where name = #{arg0}"})
-    List<Community> getCommunityByName(String name);
+    @Select({"select",COMMUNITY_INSET_FIELDS,"from",COMMUNITY_TABLE_NAME,"where name = #{name}"})
+    List<Community> getCommunityByName(@Param("name") String name);
     //根据楼宇名称查询楼宇
-    @Select({"select",BUILDING_INSET_FIELDS,"from",BUILDING_TABLE_NAME,"where buildingName= #{arg0}"})
-    List<Building> getBuildingByName(String buildingName);
+    @Select({"select",BUILDING_INSET_FIELDS,"from",BUILDING_TABLE_NAME,"where buildingName= #{buildingName}"})
+    List<Building> getBuildingByName(@Param("buildingName") String buildingName);
     //根据单元编号查询单元
-    @Select({"select",ELEMENTINSET_FIELDS,"from",ELEMENT_TABLE_NAME,"where elementNumber= #{arg0}"})
-    List<Element> getElementByNum(String elementNumber);
+    @Select({"select",ELEMENTINSET_FIELDS,"from",ELEMENT_TABLE_NAME,"where elementNumber= #{elementNumber}"})
+    List<Element> getElementByNum(@Param("elementNumber") String elementNumber);
     //根据房间号查询房屋
-    @Select({"select",HOME_INSET_FIELDS,"from",HOME_TABLE_NAME,"where houseNumber= #{arg0}"})
-    List<Home> getHomeByNum(String houseNumber);
+    @Select({"select",HOME_INSET_FIELDS,"from",HOME_TABLE_NAME,"where houseNumber= #{houseNumber}"})
+    List<Home> getHomeByNum(@Param("houseNumber") String houseNumber);
 
 
     //根据小区名称查询楼宇
-    @Select({"select",BUILDING_INSET_FIELDS,"from",BUILDING_TABLE_NAME,"where communityName =#{arg0}"})
-    List<Building> getBuildingByCommunityName(String name);
+    @Select({"select",BUILDING_INSET_FIELDS,"from",BUILDING_TABLE_NAME,"where communityName =#{name}"})
+    List<Building> getBuildingByCommunityName(@Param("name") String name);
     //根据楼宇名称查询单元
-    @Select({"select",ELEMENTINSET_FIELDS,"from",ELEMENT_TABLE_NAME,"where buildingNumber  =#{arg0}"})
-    List<Element> getElementByBuildingNum(String buildingName);
+    @Select({"select",ELEMENTINSET_FIELDS,"from",ELEMENT_TABLE_NAME,"where buildingNumber  =#{buildingName}"})
+    List<Element> getElementByBuildingNum(@Param("buildingName") String buildingName);
     //根据单元名称查询房屋
-    @Select({"select",HOME_INSET_FIELDS,"from",HOME_TABLE_NAME,"where elementNumber = #{arg0}"})
-    List<Home> getHomeByElementNum(String elementNumber);
+    @Select({"select",HOME_INSET_FIELDS,"from",HOME_TABLE_NAME,"where elementNumber = #{elementNumber}"})
+    List<Home> getHomeByElementNum(@Param("elementNumber") String elementNumber);
 
     //查询同一楼宇下的所有单元
     //select * from element where buildingNumber = any(select buildingNumber from building where buildingNumber ='1');

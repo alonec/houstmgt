@@ -2,10 +2,7 @@ package com.housemgt.Dao;
 
 
 import com.housemgt.model.Element;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Mapper
@@ -21,12 +18,12 @@ public interface ElementDao {
     void addElement(Element element);
 
     //删除操作
-    @Delete({"delete from",TABLE_NAME,"where buildingNumber=#{arg0} and elementNumber=#{arg1} "})
-    void deleteHome(String buildingNumber, String elementNumber);
+    @Delete({"delete from",TABLE_NAME,"where buildingNumber=#{buildingNumber} and elementNumber=#{elementNumber} "})
+    void deleteHome(@Param("buildingNumber") String buildingNumber, @Param("elementNumber") String elementNumber);
 
     //删除所有单元操作
-    @Delete({"delete from",TABLE_NAME,"where buildingNumber=#{arg0}"})
-    void deleteAllElement(String buildingNumber);
+    @Delete({"delete from",TABLE_NAME,"where buildingNumber=#{buildingNumber}"})
+    void deleteAllElement(@Param("buildingNumber") String buildingNumber);
 
     //更新单元信息
     @Update({"update",TABLE_NAME,"set floorNumber=#{floorNumber},households=#{households},elevatorstatus=#{elevatorstatu" +
