@@ -47,6 +47,7 @@ public class AreaRuleController {
                 areaRule.setLevelName(levelPeople.getLevelName());
                 areaRule.setLevelPeople(levelPeople.getLevelPeople());
             }
+            areaRule.setLevelPeopleId(levelPeopleId);
             areaRule.setLevelGrade(levelGrade);
             if (areaRuleService.insertSelective(areaRule) > 0){
                 resultMsg = ResultMsg.success();
