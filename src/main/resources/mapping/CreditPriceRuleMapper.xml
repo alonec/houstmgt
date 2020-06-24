@@ -9,10 +9,11 @@
     <result column="first_price_grade" property="firstPriceGrade" jdbcType="VARCHAR" />
     <result column="second_price_grade" property="secondPriceGrade" jdbcType="VARCHAR" />
     <result column="level_people" property="levelPeople" jdbcType="VARCHAR" />
+    <result column="level_people_id" jdbcType="INTEGER" property="levelPeopleId" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, sereal_id, base_grade, special_price_grade, first_price_grade, second_price_grade, 
-    level_people
+    level_people, level_people_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -67,6 +68,9 @@
       <if test="levelPeople != null" >
         level_people,
       </if>
+      <if test="levelPeopleId != null">
+        level_people_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -89,6 +93,9 @@
       </if>
       <if test="levelPeople != null" >
         #{levelPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="levelPeopleId != null">
+        #{levelPeopleId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -124,6 +131,7 @@
       first_price_grade = #{firstPriceGrade,jdbcType=VARCHAR},
       second_price_grade = #{secondPriceGrade,jdbcType=VARCHAR},
       level_people = #{levelPeople,jdbcType=VARCHAR}
+      level_people_id = #{levelPeopleId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

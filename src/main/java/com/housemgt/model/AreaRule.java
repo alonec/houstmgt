@@ -11,6 +11,8 @@ public class AreaRule {
 
     private String levelGrade;
 
+    private Integer levelPeopleId;
+
     public Integer getAreaRuleId() {
         return areaRuleId;
     }
@@ -51,4 +53,11 @@ public class AreaRule {
         this.levelGrade = levelGrade == null ? null : levelGrade.trim();
     }
 
+    public Integer getLevelPeopleId() {
+        return levelPeopleId;
+    }
+
+    public void setLevelPeopleId(Integer levelPeopleId) {
+        this.levelPeopleId = levelPeopleId;
+    }
 }

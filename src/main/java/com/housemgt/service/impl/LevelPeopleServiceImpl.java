@@ -57,7 +57,7 @@ public class LevelPeopleServiceImpl implements LevelPeopleService {
 
     @Override
     public List<LevelPeople> selectBySerealIdAndLevelName(Integer serealId, String levelName) {
-        if (serealId < 0 || levelName != null || levelName.equals("")){
+        if (serealId < 0 || levelName == null || levelName.equals("")){
             return null;
         }
         return levelPeopleMapper.selectBySerealIdAndLevelName(serealId, levelName);
