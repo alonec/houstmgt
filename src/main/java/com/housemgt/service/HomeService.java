@@ -37,4 +37,10 @@ public class HomeService {
     public void updateStatus(int status,String elementNumber,String houseNumber){
         homeDao.updateHomeStatus(status,elementNumber,houseNumber);
     }
+
+
+    //根据房间面积区间查询房间
+    public List<Home> getHomeByArea(double area1,double area2){
+        return homeDao.getHomeByArea(area1, area2);
+    }
 }

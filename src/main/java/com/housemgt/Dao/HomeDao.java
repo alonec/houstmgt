@@ -43,7 +43,8 @@ public interface HomeDao {
     String  getStatusByHome(@Param("elementNumber") String elementNumber, @Param("houseNumber") String houseNumber);
 
     //更新房屋最新的变更记录
-    @Update({"update",TABLE_NAME,"set residentsToChange =#{residentsToChange},infrastructureChanges = #{infrastructureChanges},structuremodify=#{structuremodify}" +
+    @Update({"update",TABLE_NAME,"set residentsToChange =#{residentsToChange},infrastructureChanges = #{infrastructureCh" +
+            "anges},structuremodify=#{structuremodify}" +
             " where elementNumber=#{elementNumber} and houseNumber=#{houseNumber}"})
     void updateHomeHistory(@Param("residentsToChange") String residentsToChange,@Param("infrastructureChanges") String infrastructureChanges, @Param("structuremodify") String structuremodify, @Param("elementNumber") String elementNumber, @Param("houseNumber") String houseNumber);
     // update home set residentsToChange ='1',infrastructureChanges= '2',structuremodify='3'where elementNumber='一单元' and houseNumber='32434';
@@ -51,6 +52,12 @@ public interface HomeDao {
     //更新房屋状态
     @Update({"update",TABLE_NAME,"set status =#{status} where elementNumber=#{elementNumber} and houseNumber=#{houseNumber}"})
     void updateHomeStatus(@Param("status") int status, @Param("elementNumber") String elementNumber, @Param("houseNumber") String houseNumber);
+
+
+    //根据房屋面积区间查询符合条件的房子
+    @Select({"select",INSET_FIELDS,"from",TABLE_NAME,"where houseArea between #{area1} and #{area2}"})
+   // select * from home where houseArea between 111 and 520;
+    List<Home> getHomeByArea(@Param("area1") double area1,@Param("area2") double area2);
 
 }
 

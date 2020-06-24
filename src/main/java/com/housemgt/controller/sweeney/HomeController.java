@@ -163,4 +163,23 @@ public class HomeController {
             return HouseUtil.getJSONString(1,"更新房屋使用状态失败!!!");
         }
     }
+
+    //根据房屋面积区间查询符合条件的房子
+    @RequestMapping(path = {"/getHomeByArea/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public List<Home> getHomeByArea(@RequestParam("area1") String area1,
+                             @RequestParam("area2") String area2
+
+    )  {
+
+        double a1 = Double.valueOf(area1.toString());
+        double a2 = Double.valueOf(area2.toString());
+        try {
+            return homeService.getHomeByArea(a1,a2);
+        }catch (Exception e){
+            logger.error("删除房源失败！！！"+e.getMessage());
+            return null;
+        }
+    }
+
 }
