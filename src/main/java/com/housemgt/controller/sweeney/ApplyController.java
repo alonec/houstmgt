@@ -289,6 +289,7 @@ public class ApplyController {
                            @RequestParam("tag") int tag
     )  {
 
+        System.out.println("birthdate"+birthdate);
         try {
 
             Apply apply = new Apply();
