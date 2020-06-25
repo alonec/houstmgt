@@ -54,26 +54,24 @@ public class DistributeController {
 
     @ResponseBody
     @RequestMapping(value = "/distribute/selectAreaByUser",  method = { RequestMethod.GET})
-    public Object selectAreaByUser(@RequestParam("username") Integer username) {
+    public Object selectAreaByUser(@RequestParam("username") String username) {
         ResultMsg resultMsg = null;
         PageDTO pageDTO = new PageDTO();
         try {
             logger.info("/distribute/selectAreaByUser   start!");
+            logger.info("username: #{}", username);
             Map entry = new HashMap(4);
             entry.put("staffCode", username);
             entry.put("staffName", null);
             entry.put("college", null);
             entry.put("showTimes", null);
 
-            int tatals = countResultService.count(entry);
-            if (tatals > 0) {
-                List<CountResult> countResults = countResultService.select(entry, 1, 1);
-                if(countResults != null && countResults.size() > 0){
-                    String job = countResults.get(0).getJob();
-                    Map<String, String> areaRule = this.getAreaRule();
-                    String area = areaRule.get(job);
-                    resultMsg = ResultMsg.success(area);
-                }
+            List<CountResult> countResults = countResultService.select(entry, 1, 1);
+            if(countResults != null && countResults.size() > 0){
+                String job = countResults.get(0).getJob();
+                Map<String, String> areaRule = this.getAreaRule();
+                String area = areaRule.get(job);
+                resultMsg = ResultMsg.success(area);
             } else {
                 resultMsg = ResultMsg.success();
             }
