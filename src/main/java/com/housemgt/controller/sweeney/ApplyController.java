@@ -453,4 +453,20 @@ public class ApplyController {
             return null;
         }
     }
+
+
+    //查询审核结果
+    @RequestMapping(path = {"/getShenHeStatus/"} , method = { RequestMethod.GET})
+    @ResponseBody
+    public int getStatus( @RequestParam("staffCode") String staffCode)  {
+
+        try {
+
+            return  applyService.getStatus(staffCode);
+
+        }catch (Exception e){
+            logger.error("查询已审核的失败！！！"+e.getMessage());
+            return -1;
+        }
+    }
 }

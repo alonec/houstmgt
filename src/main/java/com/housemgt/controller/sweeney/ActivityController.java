@@ -27,7 +27,6 @@ public class ActivityController {
 
         try {
             return  activityService.selectStatus( staffCode);
-
         }catch (Exception e){
             return 0;
         }

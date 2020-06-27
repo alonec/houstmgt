@@ -114,5 +114,9 @@ public interface ApplyHouseDao {
     List<ApplyPart> getNoApplyNowF();
 
 
+    //查询审核结果
+    @Select({"select  result  from",TABLE_NAME,"where staffCode = #{staffCode}"})
+    int getStatus(@Param("staffCode") String  staffCode);
+
 }
 

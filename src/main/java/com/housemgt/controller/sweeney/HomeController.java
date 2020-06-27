@@ -177,7 +177,7 @@ public class HomeController {
         try {
             return homeService.getHomeByArea(a1,a2);
         }catch (Exception e){
-            logger.error("删除房源失败！！！"+e.getMessage());
+            logger.error("查询失败！！！"+e.getMessage());
             return null;
         }
     }

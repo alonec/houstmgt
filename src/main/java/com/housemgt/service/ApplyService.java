@@ -70,6 +70,7 @@ public class ApplyService {
     //个人申请操作
     public void addApply(Apply apply){
         applyHouseDao.addApply(apply);
+        //记录申请状态
         activityStatusDao.addStatus(apply.getName(),apply.getStaffCode(),1);
     }
     //更新申请操作
@@ -80,9 +81,16 @@ public class ApplyService {
     //更新审核状态
     public  void updateApplyResult(String name, String staffCode, int result, String approvalOpinion, Date approvalTime, String approvalPerson){
         applyHouseDao.updateApplyResult(name, staffCode, result, approvalOpinion, approvalTime, approvalPerson);
-        activityStatusDao.updateStatus(name,staffCode,2);
+        if(result ==1){
+            activityStatusDao.updateStatus(name,staffCode,2);
+        }
+
     }
 
+    //查询审核结果
+    public int getStatus(String staffCode){
+        return  applyHouseDao.getStatus(staffCode);
+    }
 
 
     //查询已审核常规的
