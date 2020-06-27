@@ -3,18 +3,28 @@ package com.housemgt.service;
 
 import com.housemgt.Dao.GetMessageDao;
 import com.housemgt.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class GetMessageService {
+
 
     @Autowired
     GetMessageDao getMessageDao;
 //    @Autowired
 //    MessageDTO messageDTO;
+
+
 
     //根据房间号查询房屋
     public List<Home> getHomeByNum(String houseNumber){
