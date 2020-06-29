@@ -40,7 +40,6 @@ public class ExcelJdbcTemplate {
             suffix .append(excel.getHouseholds()).append(",");
             suffix .append(excel.getElevatorstatus()).append(",'");
             suffix .append(excel.getElementPicture()).append("'),");
-            //suffix .append("now()),");
         }
 
         // 需要去除最后一个 ','

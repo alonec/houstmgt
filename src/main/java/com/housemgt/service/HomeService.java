@@ -92,9 +92,8 @@ public class HomeService {
 //        homeDao.updateHomeStatus(status,elementNumber,houseNumber);
 //    }
 
-    public void updateStatus(int status,String elementNumber,String houseNumber){
+    public synchronized void  updateStatus(int status,String elementNumber,String houseNumber){
         ValueOperations<String, String > operations = redisTemplate.opsForValue();
-
         String key = "home_" +elementNumber+"_"+houseNumber;
         boolean haskey = redisTemplate.hasKey(key);
         if (haskey) {
