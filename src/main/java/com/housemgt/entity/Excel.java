@@ -10,8 +10,7 @@ import java.io.Serializable;
 @Data
 public class Excel implements Serializable {
 
-//    @Id
-//    private Integer id;
+
 
     @ExcelProperty(value ="buildingNumber",index = 0)
     private String buildingNumber;

@@ -62,7 +62,7 @@ public class ExcelService {
             ExcelWriter writer = EasyExcel.write(getOutputStream(filename, response),Excel.class).build();
             WriteSheet writeSheet = EasyExcel.writerSheet("Sheet1").build();
             writer.write(excelList, writeSheet);
-            /// 千万别忘记finish 会帮忙关闭流
+
             writer.finish();
         } catch (Exception e) {
             e.printStackTrace();
