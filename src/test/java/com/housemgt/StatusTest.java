@@ -2,7 +2,7 @@ package com.housemgt;
 
 
 import com.housemgt.Dao.ActivityStatusDao;
-import com.housemgt.service.ActivityService;
+import com.housemgt.service.sweeney.ActivityService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

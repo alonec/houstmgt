@@ -2,7 +2,7 @@ package com.housemgt.controller.sweeney;
 
 
 import com.housemgt.model.*;
-import com.housemgt.service.GetMessageService;
+import com.housemgt.service.sweeney.GetMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

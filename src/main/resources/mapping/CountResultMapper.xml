@@ -69,6 +69,9 @@
     from t_count_result
     <include refid="Where_Sql"/>
   </select>
+  <update id="truncateTable">
+    truncate t_count_result
+  </update>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_count_result
     where id = #{id,jdbcType=INTEGER}

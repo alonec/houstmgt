@@ -1,8 +1,6 @@
 package com.housemgt.controller.sweeney;
 
-import com.housemgt.service.ActivityService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.housemgt.service.sweeney.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -29,6 +29,9 @@ public interface CountResultMapper {
      */
     int count(@Param("entry") Map entry);
 
+
+    void truncateTable();
+
     int updateByPrimaryKeySelective(CountResult record);
 
     int updateByPrimaryKey(CountResult record);

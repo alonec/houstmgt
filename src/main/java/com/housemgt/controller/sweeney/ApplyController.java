@@ -5,7 +5,7 @@ import com.housemgt.common.utils.HouseUtil;
 import com.housemgt.model.Apply;
 import com.housemgt.model.ApplyPart;
 import com.housemgt.model.MessageDTO;
-import com.housemgt.service.ApplyService;
+import com.housemgt.service.sweeney.ApplyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller

@@ -4,7 +4,7 @@ package com.housemgt.controller.sweeney;
 import com.housemgt.common.utils.HouseUtil;
 import com.housemgt.model.History;
 import com.housemgt.model.MessageDTO;
-import com.housemgt.service.HistoryService;
+import com.housemgt.service.sweeney.HistoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

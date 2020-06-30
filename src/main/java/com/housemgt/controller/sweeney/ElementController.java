@@ -3,7 +3,7 @@ package com.housemgt.controller.sweeney;
 
 import com.housemgt.common.utils.HouseUtil;
 import com.housemgt.model.Element;
-import com.housemgt.service.ElementService;
+import com.housemgt.service.sweeney.ElementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

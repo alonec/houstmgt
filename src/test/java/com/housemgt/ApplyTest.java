@@ -4,17 +4,14 @@ package com.housemgt;
 
 import com.housemgt.Dao.ApplyHouseDao;
 import com.housemgt.model.Apply;
-import com.housemgt.model.ApplyPart;
-import com.housemgt.service.ApplyService;
+import com.housemgt.service.sweeney.ApplyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

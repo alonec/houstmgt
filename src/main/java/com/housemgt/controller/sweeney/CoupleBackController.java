@@ -4,7 +4,7 @@ package com.housemgt.controller.sweeney;
 import com.housemgt.common.utils.HouseUtil;
 import com.housemgt.model.CoupleBack;
 import com.housemgt.model.MessageDTO;
-import com.housemgt.service.CoupleBackService;
+import com.housemgt.service.sweeney.CoupleBackService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
