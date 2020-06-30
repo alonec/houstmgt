@@ -1,11 +1,10 @@
-package com.housemgt.Dao;
+package com.housemgt.dao;
 
 
 import com.housemgt.model.Apply;
 import com.housemgt.model.ApplyPart;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;

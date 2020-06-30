@@ -1,6 +1,6 @@
 package com.housemgt.service.sweeney;
 
-import com.housemgt.Dao.HomeDao;
+import com.housemgt.dao.HomeDao;
 import com.housemgt.model.Home;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -1,4 +1,4 @@
-package com.housemgt.Dao;
+package com.housemgt.dao;
 
 
 import org.apache.ibatis.annotations.*;

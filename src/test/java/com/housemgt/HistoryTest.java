@@ -1,7 +1,7 @@
 package com.housemgt;
 
 
-import com.housemgt.Dao.HistoryDao;
+import com.housemgt.dao.HistoryDao;
 import com.housemgt.model.History;
 import org.junit.Test;
 import org.junit.runner.RunWith;

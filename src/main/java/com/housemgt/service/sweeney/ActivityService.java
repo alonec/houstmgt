@@ -1,6 +1,6 @@
 package com.housemgt.service.sweeney;
 
-import com.housemgt.Dao.ActivityStatusDao;
+import com.housemgt.dao.ActivityStatusDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

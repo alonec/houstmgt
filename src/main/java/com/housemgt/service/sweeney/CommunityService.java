@@ -1,8 +1,8 @@
 package com.housemgt.service.sweeney;
 
 
-import com.housemgt.Dao.BuildingDao;
-import com.housemgt.Dao.CommunityDao;
+import com.housemgt.dao.BuildingDao;
+import com.housemgt.dao.CommunityDao;
 import com.housemgt.model.Community;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.housemgt.service.sweeney;
 
 
-import com.housemgt.Dao.ActivityStatusDao;
-import com.housemgt.Dao.ApplyHouseDao;
+import com.housemgt.dao.ActivityStatusDao;
+import com.housemgt.dao.ApplyHouseDao;
 import com.housemgt.model.Apply;
 import com.housemgt.model.ApplyPart;
 import com.housemgt.model.MessageDTO;

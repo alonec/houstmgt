@@ -1,8 +1,8 @@
 package com.housemgt.service.sweeney;
 
 
-import com.housemgt.Dao.HistoryDao;
-import com.housemgt.Dao.HomeDao;
+import com.housemgt.dao.HistoryDao;
+import com.housemgt.dao.HomeDao;
 import com.housemgt.model.History;
 import com.housemgt.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;

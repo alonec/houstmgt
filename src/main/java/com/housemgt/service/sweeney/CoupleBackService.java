@@ -2,7 +2,7 @@ package com.housemgt.service.sweeney;
 
 
 
-import com.housemgt.Dao.CoupleBackDao;
+import com.housemgt.dao.CoupleBackDao;
 import com.housemgt.model.CoupleBack;
 import com.housemgt.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;

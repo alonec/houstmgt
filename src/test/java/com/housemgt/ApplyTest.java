@@ -2,7 +2,7 @@ package com.housemgt;
 
 
 
-import com.housemgt.Dao.ApplyHouseDao;
+import com.housemgt.dao.ApplyHouseDao;
 import com.housemgt.model.Apply;
 import com.housemgt.service.sweeney.ApplyService;
 import org.junit.Test;

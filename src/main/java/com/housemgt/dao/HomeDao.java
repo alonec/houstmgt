@@ -1,4 +1,4 @@
-package com.housemgt.Dao;
+package com.housemgt.dao;
 
 //房屋信息
 

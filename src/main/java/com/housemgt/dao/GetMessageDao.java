@@ -1,4 +1,4 @@
-package com.housemgt.Dao;
+package com.housemgt.dao;
 
 import com.housemgt.model.Building;
 import com.housemgt.model.Community;

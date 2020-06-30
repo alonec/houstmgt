@@ -2,7 +2,7 @@ package com.housemgt;
 
 
 
-import com.housemgt.Dao.CommunityDao;
+import com.housemgt.dao.CommunityDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

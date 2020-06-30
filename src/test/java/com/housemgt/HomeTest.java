@@ -1,6 +1,6 @@
 package com.housemgt;
 
-import com.housemgt.Dao.HomeDao;
+import com.housemgt.dao.HomeDao;
 import com.housemgt.model.Home;
 import org.junit.Test;
 import org.junit.runner.RunWith;
